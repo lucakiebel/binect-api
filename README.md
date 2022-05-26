@@ -43,3 +43,5 @@ read('./letter-example.pdf').then(async (data) => {
     console.log(sendingResult.data);
 });
 ```
+
+Find more example usages in the examples directory.
