@@ -1,12 +1,3 @@
-# binect
-
-Typescript Axios Wrapper for binect.de API
-
-The documentation for the different endpoints can be found [here](https://petstore.swagger.io/?url=https://app.binect.de/binectapi/v1_swagger_api_kernel.json).
-
-Usage: 
-
-```typescript
 import { Configuration, SendingsApi, SendingsDocumentPostRequest } from '../src';
 import { readFile } from 'node:fs/promises';
 
@@ -16,7 +7,7 @@ const read = async (file: string) => {
     });
 }
 
-// configure the client with your username, password and basepath
+
 const configuration = new Configuration({
     username: '<username>',
     password: '<password>',
@@ -25,7 +16,7 @@ const configuration = new Configuration({
 
 const sendingsApi = new SendingsApi(configuration);
 
-// read a pdf letter file from disk as base64 encoded string
+
 read('./letter-example.pdf').then(async (data) => {
     const shipping: SendingsDocumentPostRequest = {
         content: {
@@ -42,4 +33,3 @@ read('./letter-example.pdf').then(async (data) => {
 
     console.log(sendingResult.data);
 });
-```

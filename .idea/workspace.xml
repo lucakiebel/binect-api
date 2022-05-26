@@ -5,9 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f17cfc85-5601-4cd8-a66f-61392a4951f1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/oag-templates/apiInner.mustache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/createDocument.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/getAllDocuments.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/sendLetter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/.openapi-generator-ignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/.openapi-generator/FILES" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/.openapi-generator/VERSION" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/api.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/base.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/common.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/configuration.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/git_push.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/index.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +69,7 @@
       <updated>1653569024654</updated>
       <workItem from="1653569025729" duration="3412000" />
       <workItem from="1653572460452" duration="29000" />
-      <workItem from="1653572498768" duration="9839000" />
+      <workItem from="1653572498768" duration="12772000" />
     </task>
     <servers />
   </component>
