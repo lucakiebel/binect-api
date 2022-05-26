@@ -1,0 +1,39 @@
+{
+  "name": "binect",
+  "version": "1.0.0",
+  "description": "Typescript Axios Wrapper for binect.de API",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "rimraf src/api && ./node_modules/@openapitools/openapi-generator-cli/main.js generate -g typescript-axios -i https://app.binect.de/binectapi/v1_swagger_api_kernel.json -o src/api --additional-properties=supportsES6=true,npmVersion=6.9.0,typescriptThreePlus=true -t ./oag-templates"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucakiebel/binect-api.git"
+  },
+  "keywords": [
+    "binect",
+    "mail",
+    "letter",
+    "api",
+    "wrapper",
+    "axios",
+    "typescript"
+  ],
+  "author": "lucakiebel <luca.kiebel@nibyou.de>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/lucakiebel/binect-api/issues"
+  },
+  "homepage": "https://github.com/lucakiebel/binect-api#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "url-parse": "^1.5.10"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.5.1",
+    "@types/node": "^17.0.35",
+    "@types/url-parse": "^1.4.8",
+    "rimraf": "^3.0.2"
+  }
+}
