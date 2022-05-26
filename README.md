@@ -7,7 +7,7 @@ The documentation for the different endpoints can be found [here](https://petsto
 Usage: 
 
 ```typescript
-import { Configuration, SendingsApi, SendingsDocumentPostRequest } from '../src';
+import { Configuration, SendingsApi, SendingsDocumentPostRequest } from 'binect';
 import { readFile } from 'node:fs/promises';
 
 const read = async (file: string) => {
