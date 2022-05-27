@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf src/api && ./node_modules/@openapitools/openapi-generator-cli/main.js generate -g typescript-axios -i ./binect.yaml -o src/api --additional-properties=supportsES6=true,npmVersion=6.9.0,typescriptThreePlus=true -t ./oag-templates"
+    "build": "rimraf src/api && ./node_modules/@openapitools/openapi-generator-cli/main.js generate -g typescript-axios -i ./binect.yaml -o src/api --additional-properties=supportsES6=true,npmVersion=6.9.0,typescriptThreePlus=true -t ./oag-templates",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
