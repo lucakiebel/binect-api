@@ -1,4 +1,4 @@
-import { Configuration, SendingsApi, SendingsDocumentPostRequest } from '../src';
+import { Configuration, SendingsApi, SendDocumentRequest } from '../src';
 import { readFile } from 'node:fs/promises';
 
 const read = async (file: string) => {
@@ -18,7 +18,7 @@ const sendingsApi = new SendingsApi(configuration);
 
 
 read('./letter-example.pdf').then(async (data) => {
-    const shipping: SendingsDocumentPostRequest = {
+    const shipping: SendDocumentRequest = {
         content: {
             filename: 'example.pdf',
             content: data,
@@ -29,7 +29,7 @@ read('./letter-example.pdf').then(async (data) => {
         },
     };
 
-    const sendingResult = await sendingsApi.sendingsDocumentPost(shipping);
+    const sendingResult = await sendingsApi.sendDocument(shipping);
 
     console.log(sendingResult.data);
 });

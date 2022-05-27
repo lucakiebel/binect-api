@@ -53,79 +53,6 @@ export interface Account {
     'unit': CurrencyEnum;
 }
 /**
- * The customer\'s personal data.
- * @export
- * @interface AccountsPersonaldataGetRequest
- */
-export interface AccountsPersonaldataGetRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsPersonaldataGetRequest
-     */
-    'forename'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsPersonaldataGetRequest
-     */
-    'surname'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsPersonaldataGetRequest
-     */
-    'street'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsPersonaldataGetRequest
-     */
-    'city'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsPersonaldataGetRequest
-     */
-    'plz'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsPersonaldataGetRequest
-     */
-    'state'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsPersonaldataGetRequest
-     */
-    'country'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsPersonaldataGetRequest
-     */
-    'organization'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsPersonaldataGetRequest
-     */
-    'title'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsPersonaldataGetRequest
-     */
-    'phone'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AccountsPersonaldataGetRequest
-     */
-    'partnerId'?: string;
-}
-/**
  * Describe an action of a transaction
  * @export
  * @interface Action
@@ -301,6 +228,81 @@ export interface Coworker {
 /**
  * 
  * @export
+ * @interface CreateDocumentAttachmentRequest
+ */
+export interface CreateDocumentAttachmentRequest {
+    /**
+     * 
+     * @type {Content}
+     * @memberof CreateDocumentAttachmentRequest
+     */
+    'content': Content;
+    /**
+     * The Attachment will start on the front page of a sheet
+     * @type {boolean}
+     * @memberof CreateDocumentAttachmentRequest
+     */
+    'newSheet'?: boolean;
+    /**
+     * Remarks to the attachment
+     * @type {string}
+     * @memberof CreateDocumentAttachmentRequest
+     */
+    'remarks'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface CreateDocumentRequest
+ */
+export interface CreateDocumentRequest {
+    /**
+     * 
+     * @type {Content}
+     * @memberof CreateDocumentRequest
+     */
+    'content': Content;
+    /**
+     * 
+     * @type {Options}
+     * @memberof CreateDocumentRequest
+     */
+    'options'?: Options;
+    /**
+     * 
+     * @type {Array<LetterAttribute>}
+     * @memberof CreateDocumentRequest
+     */
+    'attributes'?: Array<LetterAttribute>;
+    /**
+     * 
+     * @type {CreateDocumentRequestSplitParams}
+     * @memberof CreateDocumentRequest
+     */
+    'splitParams'?: CreateDocumentRequestSplitParams;
+}
+/**
+ * If the uploaded document is a serial letter, define how it shall be split.
+ * @export
+ * @interface CreateDocumentRequestSplitParams
+ */
+export interface CreateDocumentRequestSplitParams {
+    /**
+     * This token is used to split the serial letter.
+     * @type {string}
+     * @memberof CreateDocumentRequestSplitParams
+     */
+    'splitToken'?: string;
+    /**
+     * Every N pages the serial letter is split.
+     * @type {number}
+     * @memberof CreateDocumentRequestSplitParams
+     */
+    'splitAfterNumberOfPages'?: number;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -386,162 +388,6 @@ export interface DocumentStatus {
      * @memberof DocumentStatus
      */
     'status': Status;
-}
-/**
- * 
- * @export
- * @interface DocumentsDocumentIDAttachmentsDeleteRequest
- */
-export interface DocumentsDocumentIDAttachmentsDeleteRequest {
-    /**
-     * 
-     * @type {Content}
-     * @memberof DocumentsDocumentIDAttachmentsDeleteRequest
-     */
-    'content': Content;
-    /**
-     * The Attachment will start on the front page of a sheet
-     * @type {boolean}
-     * @memberof DocumentsDocumentIDAttachmentsDeleteRequest
-     */
-    'newSheet'?: boolean;
-    /**
-     * Remarks to the attachment
-     * @type {string}
-     * @memberof DocumentsDocumentIDAttachmentsDeleteRequest
-     */
-    'remarks'?: string;
-}
-/**
- * 
- * @export
- * @interface DocumentsDocumentIDCoverpageDeleteRequest
- */
-export interface DocumentsDocumentIDCoverpageDeleteRequest {
-    /**
-     * 
-     * @type {Address}
-     * @memberof DocumentsDocumentIDCoverpageDeleteRequest
-     */
-    'receivingAddress': Address;
-    /**
-     * 
-     * @type {Address}
-     * @memberof DocumentsDocumentIDCoverpageDeleteRequest
-     */
-    'returnAddress'?: Address;
-    /**
-     * 
-     * @type {DocumentsDocumentIDCoverpageDeleteRequestCoverText}
-     * @memberof DocumentsDocumentIDCoverpageDeleteRequest
-     */
-    'coverText'?: DocumentsDocumentIDCoverpageDeleteRequestCoverText;
-}
-/**
- * optional text on the cover page
- * @export
- * @interface DocumentsDocumentIDCoverpageDeleteRequestCoverText
- */
-export interface DocumentsDocumentIDCoverpageDeleteRequestCoverText {
-    /**
-     * optional subject text on the cover page
-     * @type {string}
-     * @memberof DocumentsDocumentIDCoverpageDeleteRequestCoverText
-     */
-    'subject'?: string;
-    /**
-     * optional date on the cover page
-     * @type {string}
-     * @memberof DocumentsDocumentIDCoverpageDeleteRequestCoverText
-     */
-    'date'?: string;
-    /**
-     * Text on the cover page. Only plain text is supported. Start a new line with \'\\n\'.
-     * @type {string}
-     * @memberof DocumentsDocumentIDCoverpageDeleteRequestCoverText
-     */
-    'text': string;
-}
-/**
- * 
- * @export
- * @interface DocumentsDocumentIDTransformationsDeleteRequest
- */
-export interface DocumentsDocumentIDTransformationsDeleteRequest {
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentsDocumentIDTransformationsDeleteRequest
-     */
-    'scaleX'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentsDocumentIDTransformationsDeleteRequest
-     */
-    'scaleY'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentsDocumentIDTransformationsDeleteRequest
-     */
-    'offsetX'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DocumentsDocumentIDTransformationsDeleteRequest
-     */
-    'offsetY'?: number;
-}
-/**
- * 
- * @export
- * @interface DocumentsGetRequest
- */
-export interface DocumentsGetRequest {
-    /**
-     * 
-     * @type {Content}
-     * @memberof DocumentsGetRequest
-     */
-    'content': Content;
-    /**
-     * 
-     * @type {Options}
-     * @memberof DocumentsGetRequest
-     */
-    'options'?: Options;
-    /**
-     * 
-     * @type {Array<LetterAttribute>}
-     * @memberof DocumentsGetRequest
-     */
-    'attributes'?: Array<LetterAttribute>;
-    /**
-     * 
-     * @type {DocumentsGetRequestSplitParams}
-     * @memberof DocumentsGetRequest
-     */
-    'splitParams'?: DocumentsGetRequestSplitParams;
-}
-/**
- * If the uploaded document is a serial letter, define how it shall be split.
- * @export
- * @interface DocumentsGetRequestSplitParams
- */
-export interface DocumentsGetRequestSplitParams {
-    /**
-     * This token is used to split the serial letter.
-     * @type {string}
-     * @memberof DocumentsGetRequestSplitParams
-     */
-    'splitToken'?: string;
-    /**
-     * Every N pages the serial letter is split.
-     * @type {number}
-     * @memberof DocumentsGetRequestSplitParams
-     */
-    'splitAfterNumberOfPages'?: number;
 }
 /**
  * 
@@ -791,25 +637,25 @@ export interface Price {
 /**
  * 
  * @export
- * @interface SendingsDocumentPostRequest
+ * @interface SendDocumentRequest
  */
-export interface SendingsDocumentPostRequest {
+export interface SendDocumentRequest {
     /**
      * 
      * @type {Content}
-     * @memberof SendingsDocumentPostRequest
+     * @memberof SendDocumentRequest
      */
     'content': Content;
     /**
      * 
      * @type {Options}
-     * @memberof SendingsDocumentPostRequest
+     * @memberof SendDocumentRequest
      */
     'options'?: Options;
     /**
      * 
      * @type {Array<LetterAttribute>}
-     * @memberof SendingsDocumentPostRequest
+     * @memberof SendDocumentRequest
      */
     'attributes'?: Array<LetterAttribute>;
 }
@@ -962,6 +808,160 @@ export interface Transaction {
     'coworker'?: string;
 }
 /**
+ * 
+ * @export
+ * @interface UpdateDocumentCoverpageRequest
+ */
+export interface UpdateDocumentCoverpageRequest {
+    /**
+     * 
+     * @type {Address}
+     * @memberof UpdateDocumentCoverpageRequest
+     */
+    'receivingAddress': Address;
+    /**
+     * 
+     * @type {Address}
+     * @memberof UpdateDocumentCoverpageRequest
+     */
+    'returnAddress'?: Address;
+    /**
+     * 
+     * @type {UpdateDocumentCoverpageRequestCoverText}
+     * @memberof UpdateDocumentCoverpageRequest
+     */
+    'coverText'?: UpdateDocumentCoverpageRequestCoverText;
+}
+/**
+ * optional text on the cover page
+ * @export
+ * @interface UpdateDocumentCoverpageRequestCoverText
+ */
+export interface UpdateDocumentCoverpageRequestCoverText {
+    /**
+     * optional subject text on the cover page
+     * @type {string}
+     * @memberof UpdateDocumentCoverpageRequestCoverText
+     */
+    'subject'?: string;
+    /**
+     * optional date on the cover page
+     * @type {string}
+     * @memberof UpdateDocumentCoverpageRequestCoverText
+     */
+    'date'?: string;
+    /**
+     * Text on the cover page. Only plain text is supported. Start a new line with \'\\n\'.
+     * @type {string}
+     * @memberof UpdateDocumentCoverpageRequestCoverText
+     */
+    'text': string;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateDocumentTransformationRequest
+ */
+export interface UpdateDocumentTransformationRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateDocumentTransformationRequest
+     */
+    'scaleX'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateDocumentTransformationRequest
+     */
+    'scaleY'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateDocumentTransformationRequest
+     */
+    'offsetX'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateDocumentTransformationRequest
+     */
+    'offsetY'?: number;
+}
+/**
+ * The customer\'s personal data.
+ * @export
+ * @interface UpdatePersonaldataRequest
+ */
+export interface UpdatePersonaldataRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePersonaldataRequest
+     */
+    'forename'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePersonaldataRequest
+     */
+    'surname'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePersonaldataRequest
+     */
+    'street'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePersonaldataRequest
+     */
+    'city'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePersonaldataRequest
+     */
+    'plz'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePersonaldataRequest
+     */
+    'state'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePersonaldataRequest
+     */
+    'country'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePersonaldataRequest
+     */
+    'organization'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePersonaldataRequest
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePersonaldataRequest
+     */
+    'phone'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePersonaldataRequest
+     */
+    'partnerId'?: string;
+}
+/**
  * The customer\'s personal data.
  * @export
  * @interface User
@@ -1054,17 +1054,87 @@ export interface User {
     export const AccountsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+        * Gets the account\'s financial data. 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getAccount: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/accounts`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets all transctions of a month. 
+            * @param {number} month 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getAllTransactionsForMonth: async (month: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'month' is not null or undefined
+                    assertParamExists('getAllTransactionsForMonth', 'month', month)
+            const localVarPath = `/accounts/journal/{month}`
+                .replace(`{${"month"}}`, encodeURIComponent(String(month)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
         * Gets all transctions of a month for a coworker. 
             * @param {string} debitornumber 
             * @param {number} month 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        accountsCoworkersDebitornumberJournalMonthGet: async (debitornumber: string, month: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCoworkerTransactionsForMonth: async (debitornumber: string, month: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'debitornumber' is not null or undefined
-                    assertParamExists('accountsCoworkersDebitornumberJournalMonthGet', 'debitornumber', debitornumber)
+                    assertParamExists('getCoworkerTransactionsForMonth', 'debitornumber', debitornumber)
                     // verify required parameter 'month' is not null or undefined
-                    assertParamExists('accountsCoworkersDebitornumberJournalMonthGet', 'month', month)
+                    assertParamExists('getCoworkerTransactionsForMonth', 'month', month)
             const localVarPath = `/accounts/coworkers/{debitornumber}/journal/{month}`
                 .replace(`{${"debitornumber"}}`, encodeURIComponent(String(debitornumber)))
                 .replace(`{${"month"}}`, encodeURIComponent(String(month)));
@@ -1099,78 +1169,8 @@ export interface User {
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        accountsCoworkersGet: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCoworkers: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/accounts/coworkers`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Gets the account\'s financial data. 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        accountsGet: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/accounts`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Gets all transctions of a month. 
-            * @param {number} month 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        accountsJournalMonthGet: async (month: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'month' is not null or undefined
-                    assertParamExists('accountsJournalMonthGet', 'month', month)
-            const localVarPath = `/accounts/journal/{month}`
-                .replace(`{${"month"}}`, encodeURIComponent(String(month)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1202,8 +1202,41 @@ export interface User {
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        accountsOptionsGet: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOptions: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/accounts/options`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets the account\'s personal data. 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getPersonalData: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/accounts/personaldata`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1236,9 +1269,9 @@ export interface User {
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        accountsOptionsPut: async (defaultOptions: Options, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateOptions: async (defaultOptions: Options, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'defaultOptions' is not null or undefined
-                    assertParamExists('accountsOptionsPut', 'defaultOptions', defaultOptions)
+                    assertParamExists('updateOptions', 'defaultOptions', defaultOptions)
             const localVarPath = `/accounts/options`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1270,47 +1303,14 @@ export interface User {
             };
             },
         /**
-        * Gets the account\'s personal data. 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        accountsPersonaldataGet: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/accounts/personaldata`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
         * Updates the personal data 
-            * @param {AccountsPersonaldataGetRequest} personalData 
+            * @param {UpdatePersonaldataRequest} personalData 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        accountsPersonaldataPatch: async (personalData: AccountsPersonaldataGetRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updatePersonaldata: async (personalData: UpdatePersonaldataRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'personalData' is not null or undefined
-                    assertParamExists('accountsPersonaldataPatch', 'personalData', personalData)
+                    assertParamExists('updatePersonaldata', 'personalData', personalData)
             const localVarPath = `/accounts/personaldata`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1352,32 +1352,12 @@ export interface User {
         const localVarAxiosParamCreator = AccountsApiAxiosParamCreator(configuration)
         return {
             /**
-            * Gets all transctions of a month for a coworker. 
-                * @param {string} debitornumber 
-                * @param {number} month 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async accountsCoworkersDebitornumberJournalMonthGet(debitornumber: string, month: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Transaction>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsCoworkersDebitornumberJournalMonthGet(debitornumber, month, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets the coworkers. 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async accountsCoworkersGet(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Coworker>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsCoworkersGet(axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
             * Gets the account\'s financial data. 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async accountsGet(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Account>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsGet(axiosConfig);
+            async getAccount(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Account>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAccount(axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -1386,8 +1366,28 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async accountsJournalMonthGet(month: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Transaction>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsJournalMonthGet(month, axiosConfig);
+            async getAllTransactionsForMonth(month: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Transaction>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllTransactionsForMonth(month, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets all transctions of a month for a coworker. 
+                * @param {string} debitornumber 
+                * @param {number} month 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getCoworkerTransactionsForMonth(debitornumber: string, month: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Transaction>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCoworkerTransactionsForMonth(debitornumber, month, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets the coworkers. 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getCoworkers(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Coworker>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCoworkers(axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -1395,8 +1395,17 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async accountsOptionsGet(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Options>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsOptionsGet(axiosConfig);
+            async getOptions(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Options>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOptions(axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets the account\'s personal data. 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getPersonalData(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPersonalData(axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -1405,27 +1414,18 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async accountsOptionsPut(defaultOptions: Options, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Options>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsOptionsPut(defaultOptions, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets the account\'s personal data. 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async accountsPersonaldataGet(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPersonaldataGet(axiosConfig);
+            async updateOptions(defaultOptions: Options, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Options>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateOptions(defaultOptions, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
             * Updates the personal data 
-                * @param {AccountsPersonaldataGetRequest} personalData 
+                * @param {UpdatePersonaldataRequest} personalData 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async accountsPersonaldataPatch(personalData: AccountsPersonaldataGetRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPersonaldataPatch(personalData, axiosConfig);
+            async updatePersonaldata(personalData: UpdatePersonaldataRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePersonaldata(personalData, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
         }
@@ -1439,30 +1439,12 @@ export interface User {
         const localVarFp = AccountsApiFp(configuration)
         return {
             /**
-            * Gets all transctions of a month for a coworker. 
-                * @param {string} debitornumber 
-                * @param {number} month 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        accountsCoworkersDebitornumberJournalMonthGet(debitornumber: string, month: number, axiosConfig?: any): AxiosPromise<Array<Transaction>> {
-            return localVarFp.accountsCoworkersDebitornumberJournalMonthGet(debitornumber, month, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets the coworkers. 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        accountsCoworkersGet(axiosConfig?: any): AxiosPromise<Array<Coworker>> {
-            return localVarFp.accountsCoworkersGet(axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
             * Gets the account\'s financial data. 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        accountsGet(axiosConfig?: any): AxiosPromise<Account> {
-            return localVarFp.accountsGet(axiosConfig).then((request) => request(axios, basePath));
+        getAccount(axiosConfig?: any): AxiosPromise<Account> {
+            return localVarFp.getAccount(axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Gets all transctions of a month. 
@@ -1470,16 +1452,42 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        accountsJournalMonthGet(month: number, axiosConfig?: any): AxiosPromise<Array<Transaction>> {
-            return localVarFp.accountsJournalMonthGet(month, axiosConfig).then((request) => request(axios, basePath));
+        getAllTransactionsForMonth(month: number, axiosConfig?: any): AxiosPromise<Array<Transaction>> {
+            return localVarFp.getAllTransactionsForMonth(month, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets all transctions of a month for a coworker. 
+                * @param {string} debitornumber 
+                * @param {number} month 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getCoworkerTransactionsForMonth(debitornumber: string, month: number, axiosConfig?: any): AxiosPromise<Array<Transaction>> {
+            return localVarFp.getCoworkerTransactionsForMonth(debitornumber, month, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets the coworkers. 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getCoworkers(axiosConfig?: any): AxiosPromise<Array<Coworker>> {
+            return localVarFp.getCoworkers(axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Gets default options which are assigned to the account. 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        accountsOptionsGet(axiosConfig?: any): AxiosPromise<Options> {
-            return localVarFp.accountsOptionsGet(axiosConfig).then((request) => request(axios, basePath));
+        getOptions(axiosConfig?: any): AxiosPromise<Options> {
+            return localVarFp.getOptions(axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets the account\'s personal data. 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getPersonalData(axiosConfig?: any): AxiosPromise<User> {
+            return localVarFp.getPersonalData(axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Updates default options which are assigned to the account. 
@@ -1487,25 +1495,17 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        accountsOptionsPut(defaultOptions: Options, axiosConfig?: any): AxiosPromise<Options> {
-            return localVarFp.accountsOptionsPut(defaultOptions, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets the account\'s personal data. 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        accountsPersonaldataGet(axiosConfig?: any): AxiosPromise<User> {
-            return localVarFp.accountsPersonaldataGet(axiosConfig).then((request) => request(axios, basePath));
+        updateOptions(defaultOptions: Options, axiosConfig?: any): AxiosPromise<Options> {
+            return localVarFp.updateOptions(defaultOptions, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Updates the personal data 
-                * @param {AccountsPersonaldataGetRequest} personalData 
+                * @param {UpdatePersonaldataRequest} personalData 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        accountsPersonaldataPatch(personalData: AccountsPersonaldataGetRequest, axiosConfig?: any): AxiosPromise<User> {
-            return localVarFp.accountsPersonaldataPatch(personalData, axiosConfig).then((request) => request(axios, basePath));
+        updatePersonaldata(personalData: UpdatePersonaldataRequest, axiosConfig?: any): AxiosPromise<User> {
+            return localVarFp.updatePersonaldata(personalData, axiosConfig).then((request) => request(axios, basePath));
             },
         };
         };
@@ -1518,35 +1518,13 @@ export interface User {
         */
             export class AccountsApi extends BaseAPI {
             /**
-            * Gets all transctions of a month for a coworker. 
-                    * @param {string} debitornumber 
-                    * @param {number} month 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof AccountsApi
-            */
-                public accountsCoworkersDebitornumberJournalMonthGet(debitornumber: string, month: number, axiosConfig?: AxiosRequestConfig) {
-                return AccountsApiFp(this.configuration).accountsCoworkersDebitornumberJournalMonthGet(debitornumber, month, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets the coworkers. 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof AccountsApi
-            */
-                public accountsCoworkersGet(axiosConfig?: AxiosRequestConfig) {
-                return AccountsApiFp(this.configuration).accountsCoworkersGet(axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
             * Gets the account\'s financial data. 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             * @memberof AccountsApi
             */
-                public accountsGet(axiosConfig?: AxiosRequestConfig) {
-                return AccountsApiFp(this.configuration).accountsGet(axiosConfig).then((request) => request(this.axios, this.basePath));
+                public getAccount(axiosConfig?: AxiosRequestConfig) {
+                return AccountsApiFp(this.configuration).getAccount(axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -1556,8 +1534,30 @@ export interface User {
             * @throws {RequiredError}
             * @memberof AccountsApi
             */
-                public accountsJournalMonthGet(month: number, axiosConfig?: AxiosRequestConfig) {
-                return AccountsApiFp(this.configuration).accountsJournalMonthGet(month, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public getAllTransactionsForMonth(month: number, axiosConfig?: AxiosRequestConfig) {
+                return AccountsApiFp(this.configuration).getAllTransactionsForMonth(month, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets all transctions of a month for a coworker. 
+                    * @param {string} debitornumber 
+                    * @param {number} month 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof AccountsApi
+            */
+                public getCoworkerTransactionsForMonth(debitornumber: string, month: number, axiosConfig?: AxiosRequestConfig) {
+                return AccountsApiFp(this.configuration).getCoworkerTransactionsForMonth(debitornumber, month, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets the coworkers. 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof AccountsApi
+            */
+                public getCoworkers(axiosConfig?: AxiosRequestConfig) {
+                return AccountsApiFp(this.configuration).getCoworkers(axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -1566,8 +1566,18 @@ export interface User {
             * @throws {RequiredError}
             * @memberof AccountsApi
             */
-                public accountsOptionsGet(axiosConfig?: AxiosRequestConfig) {
-                return AccountsApiFp(this.configuration).accountsOptionsGet(axiosConfig).then((request) => request(this.axios, this.basePath));
+                public getOptions(axiosConfig?: AxiosRequestConfig) {
+                return AccountsApiFp(this.configuration).getOptions(axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets the account\'s personal data. 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof AccountsApi
+            */
+                public getPersonalData(axiosConfig?: AxiosRequestConfig) {
+                return AccountsApiFp(this.configuration).getPersonalData(axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -1577,29 +1587,19 @@ export interface User {
             * @throws {RequiredError}
             * @memberof AccountsApi
             */
-                public accountsOptionsPut(defaultOptions: Options, axiosConfig?: AxiosRequestConfig) {
-                return AccountsApiFp(this.configuration).accountsOptionsPut(defaultOptions, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets the account\'s personal data. 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof AccountsApi
-            */
-                public accountsPersonaldataGet(axiosConfig?: AxiosRequestConfig) {
-                return AccountsApiFp(this.configuration).accountsPersonaldataGet(axiosConfig).then((request) => request(this.axios, this.basePath));
+                public updateOptions(defaultOptions: Options, axiosConfig?: AxiosRequestConfig) {
+                return AccountsApiFp(this.configuration).updateOptions(defaultOptions, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
             * Updates the personal data 
-                    * @param {AccountsPersonaldataGetRequest} personalData 
+                    * @param {UpdatePersonaldataRequest} personalData 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             * @memberof AccountsApi
             */
-                public accountsPersonaldataPatch(personalData: AccountsPersonaldataGetRequest, axiosConfig?: AxiosRequestConfig) {
-                return AccountsApiFp(this.configuration).accountsPersonaldataPatch(personalData, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public updatePersonaldata(personalData: UpdatePersonaldataRequest, axiosConfig?: AxiosRequestConfig) {
+                return AccountsApiFp(this.configuration).updatePersonaldata(personalData, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
         }
 
@@ -1611,126 +1611,15 @@ export interface User {
     export const AttachmentsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-        * Delete the referenced attachment.</br>The attachment can only be deleted if it is not appended to a none sended document.
-            * @param {number} attachmentID 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        attachmentsAttachmentIDDelete: async (attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'attachmentID' is not null or undefined
-                    assertParamExists('attachmentsAttachmentIDDelete', 'attachmentID', attachmentID)
-            const localVarPath = `/attachments/{attachmentID}`
-                .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Remove the referenced attachment from all documents, which are not yet shipped. 
-            * @param {number} attachmentID 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        attachmentsAttachmentIDDocumentsDelete: async (attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'attachmentID' is not null or undefined
-                    assertParamExists('attachmentsAttachmentIDDocumentsDelete', 'attachmentID', attachmentID)
-            const localVarPath = `/attachments/{attachmentID}/documents`
-                .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Gets all unsended documents to which this attachment is append. 
-            * @param {number} attachmentID 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        attachmentsAttachmentIDDocumentsGet: async (attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'attachmentID' is not null or undefined
-                    assertParamExists('attachmentsAttachmentIDDocumentsGet', 'attachmentID', attachmentID)
-            const localVarPath = `/attachments/{attachmentID}/documents`
-                .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
         * Append this attachment to all documents in the list.</br>The attachement is append at end of the document after already exkisting attachment. 
             * @param {number} attachmentID 
             * @param {Array<number>} [doumentIDs] 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        attachmentsAttachmentIDDocumentsPatch: async (attachmentID: number, doumentIDs?: Array<number>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        appendAttachmentsToDocuments: async (attachmentID: number, doumentIDs?: Array<number>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'attachmentID' is not null or undefined
-                    assertParamExists('attachmentsAttachmentIDDocumentsPatch', 'attachmentID', attachmentID)
+                    assertParamExists('appendAttachmentsToDocuments', 'attachmentID', attachmentID)
             const localVarPath = `/attachments/{attachmentID}/documents`
                 .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -1763,15 +1652,159 @@ export interface User {
             };
             },
         /**
+        * Upload an attachment 
+            * @param {CreateDocumentAttachmentRequest} [attachmentData] 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        createAttachment: async (attachmentData?: CreateDocumentAttachmentRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/attachments`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+                    localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+                localVarRequestOptions.data = serializeDataIfNeeded(attachmentData, localVarRequestOptions, configuration)
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Delete the referenced attachment.</br>The attachment can only be deleted if it is not appended to a none sended document.
+            * @param {number} attachmentID 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        deleteAttachment: async (attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'attachmentID' is not null or undefined
+                    assertParamExists('deleteAttachment', 'attachmentID', attachmentID)
+            const localVarPath = `/attachments/{attachmentID}`
+                .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets all attachment references. 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getAllAttachments: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/attachments`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
         * Gets referenced attachment. 
             * @param {number} attachmentID 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        attachmentsAttachmentIDGet: async (attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAttachment: async (attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'attachmentID' is not null or undefined
-                    assertParamExists('attachmentsAttachmentIDGet', 'attachmentID', attachmentID)
+                    assertParamExists('getAttachment', 'attachmentID', attachmentID)
             const localVarPath = `/attachments/{attachmentID}`
+                .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets all unsended documents to which this attachment is append. 
+            * @param {number} attachmentID 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getAttachmentDocuments: async (attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'attachmentID' is not null or undefined
+                    assertParamExists('getAttachmentDocuments', 'attachmentID', attachmentID)
+            const localVarPath = `/attachments/{attachmentID}/documents`
                 .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1805,9 +1838,9 @@ export interface User {
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        attachmentsAttachmentIDPdfGet: async (attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAttachmentPdf: async (attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'attachmentID' is not null or undefined
-                    assertParamExists('attachmentsAttachmentIDPdfGet', 'attachmentID', attachmentID)
+                    assertParamExists('getAttachmentPdf', 'attachmentID', attachmentID)
             const localVarPath = `/attachments/{attachmentID}/pdf`
                 .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -1842,9 +1875,9 @@ export interface User {
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        attachmentsAttachmentIDPngGet: async (attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAttachmentPng: async (attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'attachmentID' is not null or undefined
-                    assertParamExists('attachmentsAttachmentIDPngGet', 'attachmentID', attachmentID)
+                    assertParamExists('getAttachmentPng', 'attachmentID', attachmentID)
             const localVarPath = `/attachments/{attachmentID}/png`
                 .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -1874,12 +1907,16 @@ export interface User {
             };
             },
         /**
-        * Gets all attachment references. 
+        * Remove the referenced attachment from all documents, which are not yet shipped. 
+            * @param {number} attachmentID 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        attachmentsGet: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/attachments`;
+        removeAttachmentFromDocuments: async (attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'attachmentID' is not null or undefined
+                    assertParamExists('removeAttachmentFromDocuments', 'attachmentID', attachmentID)
+            const localVarPath = `/attachments/{attachmentID}/documents`
+                .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1887,7 +1924,7 @@ export interface User {
             baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -1900,43 +1937,6 @@ export interface User {
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Upload an attachment 
-            * @param {DocumentsDocumentIDAttachmentsDeleteRequest} [attachmentData] 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        attachmentsPost: async (attachmentData?: DocumentsDocumentIDAttachmentsDeleteRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/attachments`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-                    localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-                localVarRequestOptions.data = serializeDataIfNeeded(attachmentData, localVarRequestOptions, configuration)
 
             return {
             url: toPathString(localVarUrlObj),
@@ -1954,44 +1954,43 @@ export interface User {
         const localVarAxiosParamCreator = AttachmentsApiAxiosParamCreator(configuration)
         return {
             /**
-            * Delete the referenced attachment.</br>The attachment can only be deleted if it is not appended to a none sended document.
-                * @param {number} attachmentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async attachmentsAttachmentIDDelete(attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.attachmentsAttachmentIDDelete(attachmentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Remove the referenced attachment from all documents, which are not yet shipped. 
-                * @param {number} attachmentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async attachmentsAttachmentIDDocumentsDelete(attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DocumentStatus>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.attachmentsAttachmentIDDocumentsDelete(attachmentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets all unsended documents to which this attachment is append. 
-                * @param {number} attachmentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async attachmentsAttachmentIDDocumentsGet(attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Document>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.attachmentsAttachmentIDDocumentsGet(attachmentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
             * Append this attachment to all documents in the list.</br>The attachement is append at end of the document after already exkisting attachment. 
                 * @param {number} attachmentID 
                 * @param {Array<number>} [doumentIDs] 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async attachmentsAttachmentIDDocumentsPatch(attachmentID: number, doumentIDs?: Array<number>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DocumentStatus>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.attachmentsAttachmentIDDocumentsPatch(attachmentID, doumentIDs, axiosConfig);
+            async appendAttachmentsToDocuments(attachmentID: number, doumentIDs?: Array<number>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DocumentStatus>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appendAttachmentsToDocuments(attachmentID, doumentIDs, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Upload an attachment 
+                * @param {CreateDocumentAttachmentRequest} [attachmentData] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async createAttachment(attachmentData?: CreateDocumentAttachmentRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Attachment>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createAttachment(attachmentData, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Delete the referenced attachment.</br>The attachment can only be deleted if it is not appended to a none sended document.
+                * @param {number} attachmentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async deleteAttachment(attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteAttachment(attachmentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets all attachment references. 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getAllAttachments(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Attachment>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllAttachments(axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -2000,8 +1999,18 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async attachmentsAttachmentIDGet(attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Attachment>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.attachmentsAttachmentIDGet(attachmentID, axiosConfig);
+            async getAttachment(attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Attachment>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAttachment(attachmentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets all unsended documents to which this attachment is append. 
+                * @param {number} attachmentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getAttachmentDocuments(attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Document>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAttachmentDocuments(attachmentID, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -2010,8 +2019,8 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async attachmentsAttachmentIDPdfGet(attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.attachmentsAttachmentIDPdfGet(attachmentID, axiosConfig);
+            async getAttachmentPdf(attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAttachmentPdf(attachmentID, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -2020,27 +2029,18 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async attachmentsAttachmentIDPngGet(attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.attachmentsAttachmentIDPngGet(attachmentID, axiosConfig);
+            async getAttachmentPng(attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAttachmentPng(attachmentID, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
-            * Gets all attachment references. 
+            * Remove the referenced attachment from all documents, which are not yet shipped. 
+                * @param {number} attachmentID 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async attachmentsGet(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Attachment>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.attachmentsGet(axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Upload an attachment 
-                * @param {DocumentsDocumentIDAttachmentsDeleteRequest} [attachmentData] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async attachmentsPost(attachmentData?: DocumentsDocumentIDAttachmentsDeleteRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Attachment>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.attachmentsPost(attachmentData, axiosConfig);
+            async removeAttachmentFromDocuments(attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DocumentStatus>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.removeAttachmentFromDocuments(attachmentID, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
         }
@@ -2054,41 +2054,40 @@ export interface User {
         const localVarFp = AttachmentsApiFp(configuration)
         return {
             /**
-            * Delete the referenced attachment.</br>The attachment can only be deleted if it is not appended to a none sended document.
-                * @param {number} attachmentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        attachmentsAttachmentIDDelete(attachmentID: number, axiosConfig?: any): AxiosPromise<void> {
-            return localVarFp.attachmentsAttachmentIDDelete(attachmentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Remove the referenced attachment from all documents, which are not yet shipped. 
-                * @param {number} attachmentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        attachmentsAttachmentIDDocumentsDelete(attachmentID: number, axiosConfig?: any): AxiosPromise<Array<DocumentStatus>> {
-            return localVarFp.attachmentsAttachmentIDDocumentsDelete(attachmentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets all unsended documents to which this attachment is append. 
-                * @param {number} attachmentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        attachmentsAttachmentIDDocumentsGet(attachmentID: number, axiosConfig?: any): AxiosPromise<Array<Document>> {
-            return localVarFp.attachmentsAttachmentIDDocumentsGet(attachmentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
             * Append this attachment to all documents in the list.</br>The attachement is append at end of the document after already exkisting attachment. 
                 * @param {number} attachmentID 
                 * @param {Array<number>} [doumentIDs] 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        attachmentsAttachmentIDDocumentsPatch(attachmentID: number, doumentIDs?: Array<number>, axiosConfig?: any): AxiosPromise<Array<DocumentStatus>> {
-            return localVarFp.attachmentsAttachmentIDDocumentsPatch(attachmentID, doumentIDs, axiosConfig).then((request) => request(axios, basePath));
+        appendAttachmentsToDocuments(attachmentID: number, doumentIDs?: Array<number>, axiosConfig?: any): AxiosPromise<Array<DocumentStatus>> {
+            return localVarFp.appendAttachmentsToDocuments(attachmentID, doumentIDs, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Upload an attachment 
+                * @param {CreateDocumentAttachmentRequest} [attachmentData] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        createAttachment(attachmentData?: CreateDocumentAttachmentRequest, axiosConfig?: any): AxiosPromise<Attachment> {
+            return localVarFp.createAttachment(attachmentData, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Delete the referenced attachment.</br>The attachment can only be deleted if it is not appended to a none sended document.
+                * @param {number} attachmentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        deleteAttachment(attachmentID: number, axiosConfig?: any): AxiosPromise<void> {
+            return localVarFp.deleteAttachment(attachmentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets all attachment references. 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getAllAttachments(axiosConfig?: any): AxiosPromise<Array<Attachment>> {
+            return localVarFp.getAllAttachments(axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Gets referenced attachment. 
@@ -2096,8 +2095,17 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        attachmentsAttachmentIDGet(attachmentID: number, axiosConfig?: any): AxiosPromise<Attachment> {
-            return localVarFp.attachmentsAttachmentIDGet(attachmentID, axiosConfig).then((request) => request(axios, basePath));
+        getAttachment(attachmentID: number, axiosConfig?: any): AxiosPromise<Attachment> {
+            return localVarFp.getAttachment(attachmentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets all unsended documents to which this attachment is append. 
+                * @param {number} attachmentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getAttachmentDocuments(attachmentID: number, axiosConfig?: any): AxiosPromise<Array<Document>> {
+            return localVarFp.getAttachmentDocuments(attachmentID, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Gets the referenced attachment as PDF preview. 
@@ -2105,8 +2113,8 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        attachmentsAttachmentIDPdfGet(attachmentID: number, axiosConfig?: any): AxiosPromise<any> {
-            return localVarFp.attachmentsAttachmentIDPdfGet(attachmentID, axiosConfig).then((request) => request(axios, basePath));
+        getAttachmentPdf(attachmentID: number, axiosConfig?: any): AxiosPromise<any> {
+            return localVarFp.getAttachmentPdf(attachmentID, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Gets the referenced attachment as PNG preview of the first page. 
@@ -2114,25 +2122,17 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        attachmentsAttachmentIDPngGet(attachmentID: number, axiosConfig?: any): AxiosPromise<any> {
-            return localVarFp.attachmentsAttachmentIDPngGet(attachmentID, axiosConfig).then((request) => request(axios, basePath));
+        getAttachmentPng(attachmentID: number, axiosConfig?: any): AxiosPromise<any> {
+            return localVarFp.getAttachmentPng(attachmentID, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
-            * Gets all attachment references. 
+            * Remove the referenced attachment from all documents, which are not yet shipped. 
+                * @param {number} attachmentID 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        attachmentsGet(axiosConfig?: any): AxiosPromise<Array<Attachment>> {
-            return localVarFp.attachmentsGet(axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Upload an attachment 
-                * @param {DocumentsDocumentIDAttachmentsDeleteRequest} [attachmentData] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        attachmentsPost(attachmentData?: DocumentsDocumentIDAttachmentsDeleteRequest, axiosConfig?: any): AxiosPromise<Attachment> {
-            return localVarFp.attachmentsPost(attachmentData, axiosConfig).then((request) => request(axios, basePath));
+        removeAttachmentFromDocuments(attachmentID: number, axiosConfig?: any): AxiosPromise<Array<DocumentStatus>> {
+            return localVarFp.removeAttachmentFromDocuments(attachmentID, axiosConfig).then((request) => request(axios, basePath));
             },
         };
         };
@@ -2145,39 +2145,6 @@ export interface User {
         */
             export class AttachmentsApi extends BaseAPI {
             /**
-            * Delete the referenced attachment.</br>The attachment can only be deleted if it is not appended to a none sended document.
-                    * @param {number} attachmentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof AttachmentsApi
-            */
-                public attachmentsAttachmentIDDelete(attachmentID: number, axiosConfig?: AxiosRequestConfig) {
-                return AttachmentsApiFp(this.configuration).attachmentsAttachmentIDDelete(attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Remove the referenced attachment from all documents, which are not yet shipped. 
-                    * @param {number} attachmentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof AttachmentsApi
-            */
-                public attachmentsAttachmentIDDocumentsDelete(attachmentID: number, axiosConfig?: AxiosRequestConfig) {
-                return AttachmentsApiFp(this.configuration).attachmentsAttachmentIDDocumentsDelete(attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets all unsended documents to which this attachment is append. 
-                    * @param {number} attachmentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof AttachmentsApi
-            */
-                public attachmentsAttachmentIDDocumentsGet(attachmentID: number, axiosConfig?: AxiosRequestConfig) {
-                return AttachmentsApiFp(this.configuration).attachmentsAttachmentIDDocumentsGet(attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
             * Append this attachment to all documents in the list.</br>The attachement is append at end of the document after already exkisting attachment. 
                     * @param {number} attachmentID 
                     * @param {Array<number>} [doumentIDs] 
@@ -2185,8 +2152,40 @@ export interface User {
             * @throws {RequiredError}
             * @memberof AttachmentsApi
             */
-                public attachmentsAttachmentIDDocumentsPatch(attachmentID: number, doumentIDs?: Array<number>, axiosConfig?: AxiosRequestConfig) {
-                return AttachmentsApiFp(this.configuration).attachmentsAttachmentIDDocumentsPatch(attachmentID, doumentIDs, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public appendAttachmentsToDocuments(attachmentID: number, doumentIDs?: Array<number>, axiosConfig?: AxiosRequestConfig) {
+                return AttachmentsApiFp(this.configuration).appendAttachmentsToDocuments(attachmentID, doumentIDs, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Upload an attachment 
+                    * @param {CreateDocumentAttachmentRequest} [attachmentData] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof AttachmentsApi
+            */
+                public createAttachment(attachmentData?: CreateDocumentAttachmentRequest, axiosConfig?: AxiosRequestConfig) {
+                return AttachmentsApiFp(this.configuration).createAttachment(attachmentData, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Delete the referenced attachment.</br>The attachment can only be deleted if it is not appended to a none sended document.
+                    * @param {number} attachmentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof AttachmentsApi
+            */
+                public deleteAttachment(attachmentID: number, axiosConfig?: AxiosRequestConfig) {
+                return AttachmentsApiFp(this.configuration).deleteAttachment(attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets all attachment references. 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof AttachmentsApi
+            */
+                public getAllAttachments(axiosConfig?: AxiosRequestConfig) {
+                return AttachmentsApiFp(this.configuration).getAllAttachments(axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -2196,8 +2195,19 @@ export interface User {
             * @throws {RequiredError}
             * @memberof AttachmentsApi
             */
-                public attachmentsAttachmentIDGet(attachmentID: number, axiosConfig?: AxiosRequestConfig) {
-                return AttachmentsApiFp(this.configuration).attachmentsAttachmentIDGet(attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public getAttachment(attachmentID: number, axiosConfig?: AxiosRequestConfig) {
+                return AttachmentsApiFp(this.configuration).getAttachment(attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets all unsended documents to which this attachment is append. 
+                    * @param {number} attachmentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof AttachmentsApi
+            */
+                public getAttachmentDocuments(attachmentID: number, axiosConfig?: AxiosRequestConfig) {
+                return AttachmentsApiFp(this.configuration).getAttachmentDocuments(attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -2207,8 +2217,8 @@ export interface User {
             * @throws {RequiredError}
             * @memberof AttachmentsApi
             */
-                public attachmentsAttachmentIDPdfGet(attachmentID: number, axiosConfig?: AxiosRequestConfig) {
-                return AttachmentsApiFp(this.configuration).attachmentsAttachmentIDPdfGet(attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public getAttachmentPdf(attachmentID: number, axiosConfig?: AxiosRequestConfig) {
+                return AttachmentsApiFp(this.configuration).getAttachmentPdf(attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -2218,29 +2228,19 @@ export interface User {
             * @throws {RequiredError}
             * @memberof AttachmentsApi
             */
-                public attachmentsAttachmentIDPngGet(attachmentID: number, axiosConfig?: AxiosRequestConfig) {
-                return AttachmentsApiFp(this.configuration).attachmentsAttachmentIDPngGet(attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public getAttachmentPng(attachmentID: number, axiosConfig?: AxiosRequestConfig) {
+                return AttachmentsApiFp(this.configuration).getAttachmentPng(attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
-            * Gets all attachment references. 
+            * Remove the referenced attachment from all documents, which are not yet shipped. 
+                    * @param {number} attachmentID 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             * @memberof AttachmentsApi
             */
-                public attachmentsGet(axiosConfig?: AxiosRequestConfig) {
-                return AttachmentsApiFp(this.configuration).attachmentsGet(axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Upload an attachment 
-                    * @param {DocumentsDocumentIDAttachmentsDeleteRequest} [attachmentData] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof AttachmentsApi
-            */
-                public attachmentsPost(attachmentData?: DocumentsDocumentIDAttachmentsDeleteRequest, axiosConfig?: AxiosRequestConfig) {
-                return AttachmentsApiFp(this.configuration).attachmentsPost(attachmentData, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public removeAttachmentFromDocuments(attachmentID: number, axiosConfig?: AxiosRequestConfig) {
+                return AttachmentsApiFp(this.configuration).removeAttachmentFromDocuments(attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
         }
 
@@ -2252,58 +2252,17 @@ export interface User {
     export const DocumentsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-        * Remove an attachment from the document 
-            * @param {number} documentID 
-            * @param {number} attachmentID 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDAttachmentsAttachmentIDDelete: async (documentID: number, attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttachmentsAttachmentIDDelete', 'documentID', documentID)
-                    // verify required parameter 'attachmentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttachmentsAttachmentIDDelete', 'attachmentID', attachmentID)
-            const localVarPath = `/documents/{documentID}/attachments/{attachmentID}`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)))
-                .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
         * Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned 
             * @param {number} documentID 
             * @param {number} attachmentID 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        documentsDocumentIDAttachmentsAttachmentIDPost: async (documentID: number, attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        appendDocumentAttachment: async (documentID: number, attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttachmentsAttachmentIDPost', 'documentID', documentID)
+                    assertParamExists('appendDocumentAttachment', 'documentID', documentID)
                     // verify required parameter 'attachmentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttachmentsAttachmentIDPost', 'attachmentID', attachmentID)
+                    assertParamExists('appendDocumentAttachment', 'attachmentID', attachmentID)
             const localVarPath = `/documents/{documentID}/attachments/{attachmentID}`
                 .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)))
                 .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
@@ -2334,16 +2293,13 @@ export interface User {
             };
             },
         /**
-        * Detach all attachments of the document 
-            * @param {number} documentID 
+        * Uploads a new document. The document shall be a letter or a serial letter.</br>  The letter contains a valid address in the proper print area and respects the exclusion areas.</br>  The content must be base64 encoded. The document will be validated.</br>  If validation fails, an optional correction (transformation, cover page, address label) will be provided.</br> The response will contain a valid document (letter/serial letter) or an \'error\' object.</br>  The document is normalized with ghostscript, therefore we recommend a visible check of the document with GET /documents/{documentID}/pdf.  The document status can have the following codes:    2 (is shippable),      7 (is erroneous)    
+            * @param {CreateDocumentRequest} [upload] 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        documentsDocumentIDAttachmentsDelete: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttachmentsDelete', 'documentID', documentID)
-            const localVarPath = `/documents/{documentID}/attachments`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+        createDocument: async (upload?: CreateDocumentRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/documents`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2351,82 +2307,7 @@ export interface User {
             baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Gets document\'s all attachments 
-            * @param {number} documentID 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDAttachmentsGet: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttachmentsGet', 'documentID', documentID)
-            const localVarPath = `/documents/{documentID}/attachments`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Append a list of attachments to a document.</br>Already appended attachments stay unchanged.</br>The new attachments will be append at the end in order of list. If the order of the attachments is important take care of this.
-            * @param {number} documentID 
-            * @param {Array<number>} [attachmentIDs] 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDAttachmentsPatch: async (documentID: number, attachmentIDs?: Array<number>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttachmentsPatch', 'documentID', documentID)
-            const localVarPath = `/documents/{documentID}/attachments`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...axiosConfig};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosConfig};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -2441,7 +2322,7 @@ export interface User {
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-                localVarRequestOptions.data = serializeDataIfNeeded(attachmentIDs, localVarRequestOptions, configuration)
+                localVarRequestOptions.data = serializeDataIfNeeded(upload, localVarRequestOptions, configuration)
 
             return {
             url: toPathString(localVarUrlObj),
@@ -2451,13 +2332,13 @@ export interface User {
         /**
         * Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned 
             * @param {number} documentID 
-            * @param {DocumentsDocumentIDAttachmentsDeleteRequest} [appendAttachment] 
+            * @param {CreateDocumentAttachmentRequest} [appendAttachment] 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        documentsDocumentIDAttachmentsPost: async (documentID: number, appendAttachment?: DocumentsDocumentIDAttachmentsDeleteRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createDocumentAttachment: async (documentID: number, appendAttachment?: CreateDocumentAttachmentRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttachmentsPost', 'documentID', documentID)
+                    assertParamExists('createDocumentAttachment', 'documentID', documentID)
             const localVarPath = `/documents/{documentID}/attachments`
                 .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2490,186 +2371,15 @@ export interface User {
             };
             },
         /**
-        * Gets document\'s attributes 
-            * @param {number} documentID 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDAttributesGet: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttributesGet', 'documentID', documentID)
-            const localVarPath = `/documents/{documentID}/attributes`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Removes an attribute from the document. 
-            * @param {number} documentID 
-            * @param {string} key 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDAttributesKeyDelete: async (documentID: number, key: string, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttributesKeyDelete', 'documentID', documentID)
-                    // verify required parameter 'key' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttributesKeyDelete', 'key', key)
-            const localVarPath = `/documents/{documentID}/attributes/{key}`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)))
-                .replace(`{${"key"}}`, encodeURIComponent(String(key)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Gets the document\'s attribute for a specified key. 
-            * @param {number} documentID 
-            * @param {string} key 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDAttributesKeyGet: async (documentID: number, key: string, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttributesKeyGet', 'documentID', documentID)
-                    // verify required parameter 'key' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttributesKeyGet', 'key', key)
-            const localVarPath = `/documents/{documentID}/attributes/{key}`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)))
-                .replace(`{${"key"}}`, encodeURIComponent(String(key)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Updates the document\'s attribute for a specified key. 
-            * @param {number} documentID 
-            * @param {string} key 
-            * @param {string} value 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDAttributesKeyPut: async (documentID: number, key: string, value: string, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttributesKeyPut', 'documentID', documentID)
-                    // verify required parameter 'key' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttributesKeyPut', 'key', key)
-                    // verify required parameter 'value' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttributesKeyPut', 'value', value)
-            const localVarPath = `/documents/{documentID}/attributes/{key}`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)))
-                .replace(`{${"key"}}`, encodeURIComponent(String(key)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-                const localVarFormParams = new URLSearchParams();
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-                        if (value !== undefined) { 
-                            localVarFormParams.set('value', value as any);
-                        }
-            
-        
-                localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-                localVarRequestOptions.data = localVarFormParams.toString();
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
         * Marks the document with certain attributes. 
             * @param {number} documentID 
             * @param {Array<LetterAttribute>} [attributes] 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        documentsDocumentIDAttributesPost: async (documentID: number, attributes?: Array<LetterAttribute>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createDocumentAttributes: async (documentID: number, attributes?: Array<LetterAttribute>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDAttributesPost', 'documentID', documentID)
+                    assertParamExists('createDocumentAttributes', 'documentID', documentID)
             const localVarPath = `/documents/{documentID}/attributes`
                 .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2702,92 +2412,14 @@ export interface User {
             };
             },
         /**
-        * Removes the cover page from the document. 
-            * @param {number} documentID 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDCoverpageDelete: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDCoverpageDelete', 'documentID', documentID)
-            const localVarPath = `/documents/{documentID}/coverpage`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Creates a cover page for the document, so a receiving address is obligatory. <br> The return address is optional, also the text on the coverpage below the address. 
-            * @param {number} documentID 
-            * @param {DocumentsDocumentIDCoverpageDeleteRequest} [coverPage] 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDCoverpagePut: async (documentID: number, coverPage?: DocumentsDocumentIDCoverpageDeleteRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDCoverpagePut', 'documentID', documentID)
-            const localVarPath = `/documents/{documentID}/coverpage`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-                    localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-                localVarRequestOptions.data = serializeDataIfNeeded(coverPage, localVarRequestOptions, configuration)
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
         * Deletes the referenced document. 
             * @param {number} documentID 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        documentsDocumentIDDelete: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteDocument: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDDelete', 'documentID', documentID)
+                    assertParamExists('deleteDocument', 'documentID', documentID)
             const localVarPath = `/documents/{documentID}`
                 .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2817,15 +2449,15 @@ export interface User {
             };
             },
         /**
-        * Gets the referenced document. The document is a letter, a serial letter or an \'error\' object. 
+        * Detach all attachments of the document 
             * @param {number} documentID 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        documentsDocumentIDGet: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteDocumentAttachments: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDGet', 'documentID', documentID)
-            const localVarPath = `/documents/{documentID}`
+                    assertParamExists('deleteDocumentAttachments', 'documentID', documentID)
+            const localVarPath = `/documents/{documentID}/attachments`
                 .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2834,7 +2466,7 @@ export interface User {
             baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -2854,16 +2486,20 @@ export interface User {
             };
             },
         /**
-        * Gets document\'s options. 
+        * Removes an attribute from the document. 
             * @param {number} documentID 
+            * @param {string} key 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        documentsDocumentIDOptionsGet: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteDocumentAttribute: async (documentID: number, key: string, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDOptionsGet', 'documentID', documentID)
-            const localVarPath = `/documents/{documentID}/options`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+                    assertParamExists('deleteDocumentAttribute', 'documentID', documentID)
+                    // verify required parameter 'key' is not null or undefined
+                    assertParamExists('deleteDocumentAttribute', 'key', key)
+            const localVarPath = `/documents/{documentID}/attributes/{key}`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)))
+                .replace(`{${"key"}}`, encodeURIComponent(String(key)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2871,7 +2507,7 @@ export interface User {
             baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -2891,16 +2527,15 @@ export interface User {
             };
             },
         /**
-        * Updates document\'s options 
+        * Removes the cover page from the document. 
             * @param {number} documentID 
-            * @param {Options} [options] 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        documentsDocumentIDOptionsPut: async (documentID: number, options?: Options, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteDocumentCoverpage: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDOptionsPut', 'documentID', documentID)
-            const localVarPath = `/documents/{documentID}/options`
+                    assertParamExists('deleteDocumentCoverpage', 'documentID', documentID)
+            const localVarPath = `/documents/{documentID}/coverpage`
                 .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2909,121 +2544,7 @@ export interface User {
             baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-                    localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-                localVarRequestOptions.data = serializeDataIfNeeded(options, localVarRequestOptions, configuration)
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Gets the referenced document as PDF preview. 
-            * @param {number} documentID 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDPdfGet: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDPdfGet', 'documentID', documentID)
-            const localVarPath = `/documents/{documentID}/pdf`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Gets the referenced document as PNG preview. 
-            * @param {number} documentID 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDPngGet: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDPngGet', 'documentID', documentID)
-            const localVarPath = `/documents/{documentID}/png`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Gets status of a document 
-            * @param {number} documentID 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDStatusGet: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDStatusGet', 'documentID', documentID)
-            const localVarPath = `/documents/{documentID}/status`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -3048,9 +2569,9 @@ export interface User {
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        documentsDocumentIDTransformationsDelete: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteDocumentTransformation: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDTransformationsDelete', 'documentID', documentID)
+                    assertParamExists('deleteDocumentTransformation', 'documentID', documentID)
             const localVarPath = `/documents/{documentID}/transformations`
                 .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -3061,82 +2582,6 @@ export interface User {
             }
 
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Applies a transformation of the document\'s first page. <br>  After transformation, the document is validated once more. Therefore, please check the document\'s status again after performing any transformations.   <br>  Every transformation is applied on the original version of the document. <br>  \"offsetX\" and \"offsetY\" affect the horizontal and vertical position, moving the document along the x and y axis, using [mm] as a unit. Starting point is the upper left corner of the page.  <br>   Also scaleX and scaleY can be independently used for scaling. Factor 1 corresponds to 100%, so in order to shrink, use values smaller than 1. Scaling refers to the center of the page.  
-            * @param {number} documentID 
-            * @param {DocumentsDocumentIDTransformationsDeleteRequest} transformation 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsDocumentIDTransformationsPut: async (documentID: number, transformation: DocumentsDocumentIDTransformationsDeleteRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('documentsDocumentIDTransformationsPut', 'documentID', documentID)
-                    // verify required parameter 'transformation' is not null or undefined
-                    assertParamExists('documentsDocumentIDTransformationsPut', 'transformation', transformation)
-            const localVarPath = `/documents/{documentID}/transformations`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-                    localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-                localVarRequestOptions.data = serializeDataIfNeeded(transformation, localVarRequestOptions, configuration)
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Gets all uploaded letter references which are erroneous.  Erroneous documents can have the following status codes:    7 (erroneous) 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        documentsErrorsGet: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/documents/errors`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -3162,11 +2607,11 @@ export interface User {
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        documentsFindbyAttributesGet: async (key: Array<string>, value: Array<string>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        findDocumentByAttributes: async (key: Array<string>, value: Array<string>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'key' is not null or undefined
-                    assertParamExists('documentsFindbyAttributesGet', 'key', key)
+                    assertParamExists('findDocumentByAttributes', 'key', key)
                     // verify required parameter 'value' is not null or undefined
-                    assertParamExists('documentsFindbyAttributesGet', 'value', value)
+                    assertParamExists('findDocumentByAttributes', 'value', value)
             const localVarPath = `/documents/findbyAttributes`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3207,7 +2652,7 @@ export interface User {
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        documentsGet: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAllDocuments: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/documents`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3236,13 +2681,12 @@ export interface User {
             };
             },
         /**
-        * Uploads a new document. The document shall be a letter or a serial letter.</br>  The letter contains a valid address in the proper print area and respects the exclusion areas.</br>  The content must be base64 encoded. The document will be validated.</br>  If validation fails, an optional correction (transformation, cover page, address label) will be provided.</br> The response will contain a valid document (letter/serial letter) or an \'error\' object.</br>  The document is normalized with ghostscript, therefore we recommend a visible check of the document with GET /documents/{documentID}/pdf.  The document status can have the following codes:    2 (is shippable),      7 (is erroneous)    
-            * @param {DocumentsGetRequest} [upload] 
+        * Gets all uploaded letter references which are erroneous.  Erroneous documents can have the following status codes:    7 (erroneous) 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        documentsPost: async (upload?: DocumentsGetRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/documents`;
+        getAllErrors: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/documents/errors`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3250,7 +2694,345 @@ export interface User {
             baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosConfig};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets the referenced document. The document is a letter, a serial letter or an \'error\' object. 
+            * @param {number} documentID 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getDocument: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('getDocument', 'documentID', documentID)
+            const localVarPath = `/documents/{documentID}`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets document\'s all attachments 
+            * @param {number} documentID 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getDocumentAttachments: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('getDocumentAttachments', 'documentID', documentID)
+            const localVarPath = `/documents/{documentID}/attachments`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets the document\'s attribute for a specified key. 
+            * @param {number} documentID 
+            * @param {string} key 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getDocumentAttribute: async (documentID: number, key: string, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('getDocumentAttribute', 'documentID', documentID)
+                    // verify required parameter 'key' is not null or undefined
+                    assertParamExists('getDocumentAttribute', 'key', key)
+            const localVarPath = `/documents/{documentID}/attributes/{key}`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)))
+                .replace(`{${"key"}}`, encodeURIComponent(String(key)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets document\'s attributes 
+            * @param {number} documentID 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getDocumentAttributes: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('getDocumentAttributes', 'documentID', documentID)
+            const localVarPath = `/documents/{documentID}/attributes`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets document\'s options. 
+            * @param {number} documentID 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getDocumentOptions: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('getDocumentOptions', 'documentID', documentID)
+            const localVarPath = `/documents/{documentID}/options`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets the referenced document as PDF preview. 
+            * @param {number} documentID 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getDocumentPdf: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('getDocumentPdf', 'documentID', documentID)
+            const localVarPath = `/documents/{documentID}/pdf`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets the referenced document as PNG preview. 
+            * @param {number} documentID 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getDocumentPng: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('getDocumentPng', 'documentID', documentID)
+            const localVarPath = `/documents/{documentID}/png`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets status of a document 
+            * @param {number} documentID 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getDocumentStatus: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('getDocumentStatus', 'documentID', documentID)
+            const localVarPath = `/documents/{documentID}/status`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Append a list of attachments to a document.</br>Already appended attachments stay unchanged.</br>The new attachments will be append at the end in order of list. If the order of the attachments is important take care of this.
+            * @param {number} documentID 
+            * @param {Array<number>} [attachmentIDs] 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        patchDocumentAttachments: async (documentID: number, attachmentIDs?: Array<number>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('patchDocumentAttachments', 'documentID', documentID)
+            const localVarPath = `/documents/{documentID}/attachments`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...axiosConfig};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -3265,7 +3047,225 @@ export interface User {
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-                localVarRequestOptions.data = serializeDataIfNeeded(upload, localVarRequestOptions, configuration)
+                localVarRequestOptions.data = serializeDataIfNeeded(attachmentIDs, localVarRequestOptions, configuration)
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Remove an attachment from the document 
+            * @param {number} documentID 
+            * @param {number} attachmentID 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        removeDocumentAttachment: async (documentID: number, attachmentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('removeDocumentAttachment', 'documentID', documentID)
+                    // verify required parameter 'attachmentID' is not null or undefined
+                    assertParamExists('removeDocumentAttachment', 'attachmentID', attachmentID)
+            const localVarPath = `/documents/{documentID}/attachments/{attachmentID}`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)))
+                .replace(`{${"attachmentID"}}`, encodeURIComponent(String(attachmentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Updates the document\'s attribute for a specified key. 
+            * @param {number} documentID 
+            * @param {string} key 
+            * @param {string} value 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        updateDocumentAttribute: async (documentID: number, key: string, value: string, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('updateDocumentAttribute', 'documentID', documentID)
+                    // verify required parameter 'key' is not null or undefined
+                    assertParamExists('updateDocumentAttribute', 'key', key)
+                    // verify required parameter 'value' is not null or undefined
+                    assertParamExists('updateDocumentAttribute', 'value', value)
+            const localVarPath = `/documents/{documentID}/attributes/{key}`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)))
+                .replace(`{${"key"}}`, encodeURIComponent(String(key)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+                const localVarFormParams = new URLSearchParams();
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+                        if (value !== undefined) { 
+                            localVarFormParams.set('value', value as any);
+                        }
+            
+        
+                localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+                localVarRequestOptions.data = localVarFormParams.toString();
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Creates a cover page for the document, so a receiving address is obligatory. <br> The return address is optional, also the text on the coverpage below the address. 
+            * @param {number} documentID 
+            * @param {UpdateDocumentCoverpageRequest} [coverPage] 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        updateDocumentCoverpage: async (documentID: number, coverPage?: UpdateDocumentCoverpageRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('updateDocumentCoverpage', 'documentID', documentID)
+            const localVarPath = `/documents/{documentID}/coverpage`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+                    localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+                localVarRequestOptions.data = serializeDataIfNeeded(coverPage, localVarRequestOptions, configuration)
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Updates document\'s options 
+            * @param {number} documentID 
+            * @param {Options} [options] 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        updateDocumentOptions: async (documentID: number, options?: Options, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('updateDocumentOptions', 'documentID', documentID)
+            const localVarPath = `/documents/{documentID}/options`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+                    localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+                localVarRequestOptions.data = serializeDataIfNeeded(options, localVarRequestOptions, configuration)
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Applies a transformation of the document\'s first page. <br>  After transformation, the document is validated once more. Therefore, please check the document\'s status again after performing any transformations.   <br>  Every transformation is applied on the original version of the document. <br>  \"offsetX\" and \"offsetY\" affect the horizontal and vertical position, moving the document along the x and y axis, using [mm] as a unit. Starting point is the upper left corner of the page.  <br>   Also scaleX and scaleY can be independently used for scaling. Factor 1 corresponds to 100%, so in order to shrink, use values smaller than 1. Scaling refers to the center of the page.  
+            * @param {number} documentID 
+            * @param {UpdateDocumentTransformationRequest} transformation 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        updateDocumentTransformation: async (documentID: number, transformation: UpdateDocumentTransformationRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('updateDocumentTransformation', 'documentID', documentID)
+                    // verify required parameter 'transformation' is not null or undefined
+                    assertParamExists('updateDocumentTransformation', 'transformation', transformation)
+            const localVarPath = `/documents/{documentID}/transformations`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+                    localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+                localVarRequestOptions.data = serializeDataIfNeeded(transformation, localVarRequestOptions, configuration)
 
             return {
             url: toPathString(localVarUrlObj),
@@ -3283,25 +3283,56 @@ export interface User {
         const localVarAxiosParamCreator = DocumentsApiAxiosParamCreator(configuration)
         return {
             /**
-            * Remove an attachment from the document 
-                * @param {number} documentID 
-                * @param {number} attachmentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDAttachmentsAttachmentIDDelete(documentID: number, attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDAttachmentsAttachmentIDDelete(documentID, attachmentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
             * Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned 
                 * @param {number} documentID 
                 * @param {number} attachmentID 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async documentsDocumentIDAttachmentsAttachmentIDPost(documentID: number, attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDAttachmentsAttachmentIDPost(documentID, attachmentID, axiosConfig);
+            async appendDocumentAttachment(documentID: number, attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.appendDocumentAttachment(documentID, attachmentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Uploads a new document. The document shall be a letter or a serial letter.</br>  The letter contains a valid address in the proper print area and respects the exclusion areas.</br>  The content must be base64 encoded. The document will be validated.</br>  If validation fails, an optional correction (transformation, cover page, address label) will be provided.</br> The response will contain a valid document (letter/serial letter) or an \'error\' object.</br>  The document is normalized with ghostscript, therefore we recommend a visible check of the document with GET /documents/{documentID}/pdf.  The document status can have the following codes:    2 (is shippable),      7 (is erroneous)    
+                * @param {CreateDocumentRequest} [upload] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async createDocument(upload?: CreateDocumentRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createDocument(upload, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned 
+                * @param {number} documentID 
+                * @param {CreateDocumentAttachmentRequest} [appendAttachment] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async createDocumentAttachment(documentID: number, appendAttachment?: CreateDocumentAttachmentRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Attachment>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createDocumentAttachment(documentID, appendAttachment, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Marks the document with certain attributes. 
+                * @param {number} documentID 
+                * @param {Array<LetterAttribute>} [attributes] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async createDocumentAttributes(documentID: number, attributes?: Array<LetterAttribute>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LetterAttribute>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createDocumentAttributes(documentID, attributes, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Deletes the referenced document. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async deleteDocument(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteDocument(documentID, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -3310,50 +3341,8 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async documentsDocumentIDAttachmentsDelete(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDAttachmentsDelete(documentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets document\'s all attachments 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDAttachmentsGet(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Attachment>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDAttachmentsGet(documentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Append a list of attachments to a document.</br>Already appended attachments stay unchanged.</br>The new attachments will be append at the end in order of list. If the order of the attachments is important take care of this.
-                * @param {number} documentID 
-                * @param {Array<number>} [attachmentIDs] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDAttachmentsPatch(documentID: number, attachmentIDs?: Array<number>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDAttachmentsPatch(documentID, attachmentIDs, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned 
-                * @param {number} documentID 
-                * @param {DocumentsDocumentIDAttachmentsDeleteRequest} [appendAttachment] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDAttachmentsPost(documentID: number, appendAttachment?: DocumentsDocumentIDAttachmentsDeleteRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Attachment>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDAttachmentsPost(documentID, appendAttachment, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets document\'s attributes 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDAttributesGet(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LetterAttribute>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDAttributesGet(documentID, axiosConfig);
+            async deleteDocumentAttachments(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteDocumentAttachments(documentID, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -3363,8 +3352,77 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async documentsDocumentIDAttributesKeyDelete(documentID: number, key: string, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDAttributesKeyDelete(documentID, key, axiosConfig);
+            async deleteDocumentAttribute(documentID: number, key: string, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteDocumentAttribute(documentID, key, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Removes the cover page from the document. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async deleteDocumentCoverpage(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteDocumentCoverpage(documentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Removes the performed transformation on the document and rolls back to the original version of the document 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async deleteDocumentTransformation(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteDocumentTransformation(documentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets all uploaded letters which were marked with the given attributes.<br> There must be at least one pair of the parameters key and value. Take care that of the order of the keys and values.  
+                * @param {Array<string>} key 
+                * @param {Array<string>} value 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async findDocumentByAttributes(key: Array<string>, value: Array<string>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Document>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findDocumentByAttributes(key, value, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets all uploaded letter references which are shippable.  Shippable documents can have the following status codes:    2 (is shippable) <br><br> Optional a filter on attributes can be defined.<br> attributes is a JSON-formated string. <br> This object is an array of LetterAtributte 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getAllDocuments(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Document>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllDocuments(axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets all uploaded letter references which are erroneous.  Erroneous documents can have the following status codes:    7 (erroneous) 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getAllErrors(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Document>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllErrors(axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets the referenced document. The document is a letter, a serial letter or an \'error\' object. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getDocument(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDocument(documentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets document\'s all attachments 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getDocumentAttachments(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Attachment>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDocumentAttachments(documentID, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -3374,8 +3432,80 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async documentsDocumentIDAttributesKeyGet(documentID: number, key: string, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LetterAttribute>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDAttributesKeyGet(documentID, key, axiosConfig);
+            async getDocumentAttribute(documentID: number, key: string, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LetterAttribute>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDocumentAttribute(documentID, key, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets document\'s attributes 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getDocumentAttributes(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LetterAttribute>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDocumentAttributes(documentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets document\'s options. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getDocumentOptions(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Options>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDocumentOptions(documentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets the referenced document as PDF preview. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getDocumentPdf(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDocumentPdf(documentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets the referenced document as PNG preview. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getDocumentPng(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDocumentPng(documentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets status of a document 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getDocumentStatus(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DocumentStatus>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDocumentStatus(documentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Append a list of attachments to a document.</br>Already appended attachments stay unchanged.</br>The new attachments will be append at the end in order of list. If the order of the attachments is important take care of this.
+                * @param {number} documentID 
+                * @param {Array<number>} [attachmentIDs] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async patchDocumentAttachments(documentID: number, attachmentIDs?: Array<number>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.patchDocumentAttachments(documentID, attachmentIDs, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Remove an attachment from the document 
+                * @param {number} documentID 
+                * @param {number} attachmentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async removeDocumentAttachment(documentID: number, attachmentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.removeDocumentAttachment(documentID, attachmentID, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -3386,70 +3516,19 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async documentsDocumentIDAttributesKeyPut(documentID: number, key: string, value: string, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LetterAttribute>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDAttributesKeyPut(documentID, key, value, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Marks the document with certain attributes. 
-                * @param {number} documentID 
-                * @param {Array<LetterAttribute>} [attributes] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDAttributesPost(documentID: number, attributes?: Array<LetterAttribute>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LetterAttribute>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDAttributesPost(documentID, attributes, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Removes the cover page from the document. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDCoverpageDelete(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDCoverpageDelete(documentID, axiosConfig);
+            async updateDocumentAttribute(documentID: number, key: string, value: string, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LetterAttribute>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateDocumentAttribute(documentID, key, value, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
             * Creates a cover page for the document, so a receiving address is obligatory. <br> The return address is optional, also the text on the coverpage below the address. 
                 * @param {number} documentID 
-                * @param {DocumentsDocumentIDCoverpageDeleteRequest} [coverPage] 
+                * @param {UpdateDocumentCoverpageRequest} [coverPage] 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async documentsDocumentIDCoverpagePut(documentID: number, coverPage?: DocumentsDocumentIDCoverpageDeleteRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDCoverpagePut(documentID, coverPage, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Deletes the referenced document. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDDelete(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDDelete(documentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets the referenced document. The document is a letter, a serial letter or an \'error\' object. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDGet(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDGet(documentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets document\'s options. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDOptionsGet(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Options>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDOptionsGet(documentID, axiosConfig);
+            async updateDocumentCoverpage(documentID: number, coverPage?: UpdateDocumentCoverpageRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateDocumentCoverpage(documentID, coverPage, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -3459,98 +3538,19 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async documentsDocumentIDOptionsPut(documentID: number, options?: Options, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Options>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDOptionsPut(documentID, options, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets the referenced document as PDF preview. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDPdfGet(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDPdfGet(documentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets the referenced document as PNG preview. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDPngGet(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDPngGet(documentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets status of a document 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDStatusGet(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DocumentStatus>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDStatusGet(documentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Removes the performed transformation on the document and rolls back to the original version of the document 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsDocumentIDTransformationsDelete(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDTransformationsDelete(documentID, axiosConfig);
+            async updateDocumentOptions(documentID: number, options?: Options, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Options>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateDocumentOptions(documentID, options, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
             * Applies a transformation of the document\'s first page. <br>  After transformation, the document is validated once more. Therefore, please check the document\'s status again after performing any transformations.   <br>  Every transformation is applied on the original version of the document. <br>  \"offsetX\" and \"offsetY\" affect the horizontal and vertical position, moving the document along the x and y axis, using [mm] as a unit. Starting point is the upper left corner of the page.  <br>   Also scaleX and scaleY can be independently used for scaling. Factor 1 corresponds to 100%, so in order to shrink, use values smaller than 1. Scaling refers to the center of the page.  
                 * @param {number} documentID 
-                * @param {DocumentsDocumentIDTransformationsDeleteRequest} transformation 
+                * @param {UpdateDocumentTransformationRequest} transformation 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async documentsDocumentIDTransformationsPut(documentID: number, transformation: DocumentsDocumentIDTransformationsDeleteRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsDocumentIDTransformationsPut(documentID, transformation, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets all uploaded letter references which are erroneous.  Erroneous documents can have the following status codes:    7 (erroneous) 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsErrorsGet(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Document>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsErrorsGet(axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets all uploaded letters which were marked with the given attributes.<br> There must be at least one pair of the parameters key and value. Take care that of the order of the keys and values.  
-                * @param {Array<string>} key 
-                * @param {Array<string>} value 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsFindbyAttributesGet(key: Array<string>, value: Array<string>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Document>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsFindbyAttributesGet(key, value, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets all uploaded letter references which are shippable.  Shippable documents can have the following status codes:    2 (is shippable) <br><br> Optional a filter on attributes can be defined.<br> attributes is a JSON-formated string. <br> This object is an array of LetterAtributte 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsGet(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Document>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsGet(axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Uploads a new document. The document shall be a letter or a serial letter.</br>  The letter contains a valid address in the proper print area and respects the exclusion areas.</br>  The content must be base64 encoded. The document will be validated.</br>  If validation fails, an optional correction (transformation, cover page, address label) will be provided.</br> The response will contain a valid document (letter/serial letter) or an \'error\' object.</br>  The document is normalized with ghostscript, therefore we recommend a visible check of the document with GET /documents/{documentID}/pdf.  The document status can have the following codes:    2 (is shippable),      7 (is erroneous)    
-                * @param {DocumentsGetRequest} [upload] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async documentsPost(upload?: DocumentsGetRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsPost(upload, axiosConfig);
+            async updateDocumentTransformation(documentID: number, transformation: UpdateDocumentTransformationRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateDocumentTransformation(documentID, transformation, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
         }
@@ -3564,24 +3564,52 @@ export interface User {
         const localVarFp = DocumentsApiFp(configuration)
         return {
             /**
-            * Remove an attachment from the document 
-                * @param {number} documentID 
-                * @param {number} attachmentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDAttachmentsAttachmentIDDelete(documentID: number, attachmentID: number, axiosConfig?: any): AxiosPromise<Document> {
-            return localVarFp.documentsDocumentIDAttachmentsAttachmentIDDelete(documentID, attachmentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
             * Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned 
                 * @param {number} documentID 
                 * @param {number} attachmentID 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        documentsDocumentIDAttachmentsAttachmentIDPost(documentID: number, attachmentID: number, axiosConfig?: any): AxiosPromise<Document> {
-            return localVarFp.documentsDocumentIDAttachmentsAttachmentIDPost(documentID, attachmentID, axiosConfig).then((request) => request(axios, basePath));
+        appendDocumentAttachment(documentID: number, attachmentID: number, axiosConfig?: any): AxiosPromise<Document> {
+            return localVarFp.appendDocumentAttachment(documentID, attachmentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Uploads a new document. The document shall be a letter or a serial letter.</br>  The letter contains a valid address in the proper print area and respects the exclusion areas.</br>  The content must be base64 encoded. The document will be validated.</br>  If validation fails, an optional correction (transformation, cover page, address label) will be provided.</br> The response will contain a valid document (letter/serial letter) or an \'error\' object.</br>  The document is normalized with ghostscript, therefore we recommend a visible check of the document with GET /documents/{documentID}/pdf.  The document status can have the following codes:    2 (is shippable),      7 (is erroneous)    
+                * @param {CreateDocumentRequest} [upload] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        createDocument(upload?: CreateDocumentRequest, axiosConfig?: any): AxiosPromise<Document> {
+            return localVarFp.createDocument(upload, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned 
+                * @param {number} documentID 
+                * @param {CreateDocumentAttachmentRequest} [appendAttachment] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        createDocumentAttachment(documentID: number, appendAttachment?: CreateDocumentAttachmentRequest, axiosConfig?: any): AxiosPromise<Array<Attachment>> {
+            return localVarFp.createDocumentAttachment(documentID, appendAttachment, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Marks the document with certain attributes. 
+                * @param {number} documentID 
+                * @param {Array<LetterAttribute>} [attributes] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        createDocumentAttributes(documentID: number, attributes?: Array<LetterAttribute>, axiosConfig?: any): AxiosPromise<Array<LetterAttribute>> {
+            return localVarFp.createDocumentAttributes(documentID, attributes, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Deletes the referenced document. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        deleteDocument(documentID: number, axiosConfig?: any): AxiosPromise<void> {
+            return localVarFp.deleteDocument(documentID, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Detach all attachments of the document 
@@ -3589,46 +3617,8 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        documentsDocumentIDAttachmentsDelete(documentID: number, axiosConfig?: any): AxiosPromise<Document> {
-            return localVarFp.documentsDocumentIDAttachmentsDelete(documentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets document\'s all attachments 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDAttachmentsGet(documentID: number, axiosConfig?: any): AxiosPromise<Array<Attachment>> {
-            return localVarFp.documentsDocumentIDAttachmentsGet(documentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Append a list of attachments to a document.</br>Already appended attachments stay unchanged.</br>The new attachments will be append at the end in order of list. If the order of the attachments is important take care of this.
-                * @param {number} documentID 
-                * @param {Array<number>} [attachmentIDs] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDAttachmentsPatch(documentID: number, attachmentIDs?: Array<number>, axiosConfig?: any): AxiosPromise<Document> {
-            return localVarFp.documentsDocumentIDAttachmentsPatch(documentID, attachmentIDs, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned 
-                * @param {number} documentID 
-                * @param {DocumentsDocumentIDAttachmentsDeleteRequest} [appendAttachment] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDAttachmentsPost(documentID: number, appendAttachment?: DocumentsDocumentIDAttachmentsDeleteRequest, axiosConfig?: any): AxiosPromise<Array<Attachment>> {
-            return localVarFp.documentsDocumentIDAttachmentsPost(documentID, appendAttachment, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets document\'s attributes 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDAttributesGet(documentID: number, axiosConfig?: any): AxiosPromise<Array<LetterAttribute>> {
-            return localVarFp.documentsDocumentIDAttributesGet(documentID, axiosConfig).then((request) => request(axios, basePath));
+        deleteDocumentAttachments(documentID: number, axiosConfig?: any): AxiosPromise<Document> {
+            return localVarFp.deleteDocumentAttachments(documentID, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Removes an attribute from the document. 
@@ -3637,8 +3627,70 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        documentsDocumentIDAttributesKeyDelete(documentID: number, key: string, axiosConfig?: any): AxiosPromise<void> {
-            return localVarFp.documentsDocumentIDAttributesKeyDelete(documentID, key, axiosConfig).then((request) => request(axios, basePath));
+        deleteDocumentAttribute(documentID: number, key: string, axiosConfig?: any): AxiosPromise<void> {
+            return localVarFp.deleteDocumentAttribute(documentID, key, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Removes the cover page from the document. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        deleteDocumentCoverpage(documentID: number, axiosConfig?: any): AxiosPromise<void> {
+            return localVarFp.deleteDocumentCoverpage(documentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Removes the performed transformation on the document and rolls back to the original version of the document 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        deleteDocumentTransformation(documentID: number, axiosConfig?: any): AxiosPromise<void> {
+            return localVarFp.deleteDocumentTransformation(documentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets all uploaded letters which were marked with the given attributes.<br> There must be at least one pair of the parameters key and value. Take care that of the order of the keys and values.  
+                * @param {Array<string>} key 
+                * @param {Array<string>} value 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        findDocumentByAttributes(key: Array<string>, value: Array<string>, axiosConfig?: any): AxiosPromise<Array<Document>> {
+            return localVarFp.findDocumentByAttributes(key, value, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets all uploaded letter references which are shippable.  Shippable documents can have the following status codes:    2 (is shippable) <br><br> Optional a filter on attributes can be defined.<br> attributes is a JSON-formated string. <br> This object is an array of LetterAtributte 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getAllDocuments(axiosConfig?: any): AxiosPromise<Array<Document>> {
+            return localVarFp.getAllDocuments(axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets all uploaded letter references which are erroneous.  Erroneous documents can have the following status codes:    7 (erroneous) 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getAllErrors(axiosConfig?: any): AxiosPromise<Array<Document>> {
+            return localVarFp.getAllErrors(axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets the referenced document. The document is a letter, a serial letter or an \'error\' object. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getDocument(documentID: number, axiosConfig?: any): AxiosPromise<Document> {
+            return localVarFp.getDocument(documentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets document\'s all attachments 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getDocumentAttachments(documentID: number, axiosConfig?: any): AxiosPromise<Array<Attachment>> {
+            return localVarFp.getDocumentAttachments(documentID, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Gets the document\'s attribute for a specified key. 
@@ -3647,8 +3699,73 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        documentsDocumentIDAttributesKeyGet(documentID: number, key: string, axiosConfig?: any): AxiosPromise<LetterAttribute> {
-            return localVarFp.documentsDocumentIDAttributesKeyGet(documentID, key, axiosConfig).then((request) => request(axios, basePath));
+        getDocumentAttribute(documentID: number, key: string, axiosConfig?: any): AxiosPromise<LetterAttribute> {
+            return localVarFp.getDocumentAttribute(documentID, key, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets document\'s attributes 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getDocumentAttributes(documentID: number, axiosConfig?: any): AxiosPromise<Array<LetterAttribute>> {
+            return localVarFp.getDocumentAttributes(documentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets document\'s options. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getDocumentOptions(documentID: number, axiosConfig?: any): AxiosPromise<Options> {
+            return localVarFp.getDocumentOptions(documentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets the referenced document as PDF preview. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getDocumentPdf(documentID: number, axiosConfig?: any): AxiosPromise<any> {
+            return localVarFp.getDocumentPdf(documentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets the referenced document as PNG preview. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getDocumentPng(documentID: number, axiosConfig?: any): AxiosPromise<any> {
+            return localVarFp.getDocumentPng(documentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets status of a document 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getDocumentStatus(documentID: number, axiosConfig?: any): AxiosPromise<DocumentStatus> {
+            return localVarFp.getDocumentStatus(documentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Append a list of attachments to a document.</br>Already appended attachments stay unchanged.</br>The new attachments will be append at the end in order of list. If the order of the attachments is important take care of this.
+                * @param {number} documentID 
+                * @param {Array<number>} [attachmentIDs] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        patchDocumentAttachments(documentID: number, attachmentIDs?: Array<number>, axiosConfig?: any): AxiosPromise<Document> {
+            return localVarFp.patchDocumentAttachments(documentID, attachmentIDs, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Remove an attachment from the document 
+                * @param {number} documentID 
+                * @param {number} attachmentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        removeDocumentAttachment(documentID: number, attachmentID: number, axiosConfig?: any): AxiosPromise<Document> {
+            return localVarFp.removeDocumentAttachment(documentID, attachmentID, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Updates the document\'s attribute for a specified key. 
@@ -3658,64 +3775,18 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        documentsDocumentIDAttributesKeyPut(documentID: number, key: string, value: string, axiosConfig?: any): AxiosPromise<LetterAttribute> {
-            return localVarFp.documentsDocumentIDAttributesKeyPut(documentID, key, value, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Marks the document with certain attributes. 
-                * @param {number} documentID 
-                * @param {Array<LetterAttribute>} [attributes] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDAttributesPost(documentID: number, attributes?: Array<LetterAttribute>, axiosConfig?: any): AxiosPromise<Array<LetterAttribute>> {
-            return localVarFp.documentsDocumentIDAttributesPost(documentID, attributes, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Removes the cover page from the document. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDCoverpageDelete(documentID: number, axiosConfig?: any): AxiosPromise<void> {
-            return localVarFp.documentsDocumentIDCoverpageDelete(documentID, axiosConfig).then((request) => request(axios, basePath));
+        updateDocumentAttribute(documentID: number, key: string, value: string, axiosConfig?: any): AxiosPromise<LetterAttribute> {
+            return localVarFp.updateDocumentAttribute(documentID, key, value, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Creates a cover page for the document, so a receiving address is obligatory. <br> The return address is optional, also the text on the coverpage below the address. 
                 * @param {number} documentID 
-                * @param {DocumentsDocumentIDCoverpageDeleteRequest} [coverPage] 
+                * @param {UpdateDocumentCoverpageRequest} [coverPage] 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        documentsDocumentIDCoverpagePut(documentID: number, coverPage?: DocumentsDocumentIDCoverpageDeleteRequest, axiosConfig?: any): AxiosPromise<Document> {
-            return localVarFp.documentsDocumentIDCoverpagePut(documentID, coverPage, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Deletes the referenced document. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDDelete(documentID: number, axiosConfig?: any): AxiosPromise<void> {
-            return localVarFp.documentsDocumentIDDelete(documentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets the referenced document. The document is a letter, a serial letter or an \'error\' object. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDGet(documentID: number, axiosConfig?: any): AxiosPromise<Document> {
-            return localVarFp.documentsDocumentIDGet(documentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets document\'s options. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDOptionsGet(documentID: number, axiosConfig?: any): AxiosPromise<Options> {
-            return localVarFp.documentsDocumentIDOptionsGet(documentID, axiosConfig).then((request) => request(axios, basePath));
+        updateDocumentCoverpage(documentID: number, coverPage?: UpdateDocumentCoverpageRequest, axiosConfig?: any): AxiosPromise<Document> {
+            return localVarFp.updateDocumentCoverpage(documentID, coverPage, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Updates document\'s options 
@@ -3724,89 +3795,18 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        documentsDocumentIDOptionsPut(documentID: number, options?: Options, axiosConfig?: any): AxiosPromise<Options> {
-            return localVarFp.documentsDocumentIDOptionsPut(documentID, options, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets the referenced document as PDF preview. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDPdfGet(documentID: number, axiosConfig?: any): AxiosPromise<any> {
-            return localVarFp.documentsDocumentIDPdfGet(documentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets the referenced document as PNG preview. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDPngGet(documentID: number, axiosConfig?: any): AxiosPromise<any> {
-            return localVarFp.documentsDocumentIDPngGet(documentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets status of a document 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDStatusGet(documentID: number, axiosConfig?: any): AxiosPromise<DocumentStatus> {
-            return localVarFp.documentsDocumentIDStatusGet(documentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Removes the performed transformation on the document and rolls back to the original version of the document 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsDocumentIDTransformationsDelete(documentID: number, axiosConfig?: any): AxiosPromise<void> {
-            return localVarFp.documentsDocumentIDTransformationsDelete(documentID, axiosConfig).then((request) => request(axios, basePath));
+        updateDocumentOptions(documentID: number, options?: Options, axiosConfig?: any): AxiosPromise<Options> {
+            return localVarFp.updateDocumentOptions(documentID, options, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Applies a transformation of the document\'s first page. <br>  After transformation, the document is validated once more. Therefore, please check the document\'s status again after performing any transformations.   <br>  Every transformation is applied on the original version of the document. <br>  \"offsetX\" and \"offsetY\" affect the horizontal and vertical position, moving the document along the x and y axis, using [mm] as a unit. Starting point is the upper left corner of the page.  <br>   Also scaleX and scaleY can be independently used for scaling. Factor 1 corresponds to 100%, so in order to shrink, use values smaller than 1. Scaling refers to the center of the page.  
                 * @param {number} documentID 
-                * @param {DocumentsDocumentIDTransformationsDeleteRequest} transformation 
+                * @param {UpdateDocumentTransformationRequest} transformation 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        documentsDocumentIDTransformationsPut(documentID: number, transformation: DocumentsDocumentIDTransformationsDeleteRequest, axiosConfig?: any): AxiosPromise<Document> {
-            return localVarFp.documentsDocumentIDTransformationsPut(documentID, transformation, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets all uploaded letter references which are erroneous.  Erroneous documents can have the following status codes:    7 (erroneous) 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsErrorsGet(axiosConfig?: any): AxiosPromise<Array<Document>> {
-            return localVarFp.documentsErrorsGet(axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets all uploaded letters which were marked with the given attributes.<br> There must be at least one pair of the parameters key and value. Take care that of the order of the keys and values.  
-                * @param {Array<string>} key 
-                * @param {Array<string>} value 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsFindbyAttributesGet(key: Array<string>, value: Array<string>, axiosConfig?: any): AxiosPromise<Array<Document>> {
-            return localVarFp.documentsFindbyAttributesGet(key, value, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets all uploaded letter references which are shippable.  Shippable documents can have the following status codes:    2 (is shippable) <br><br> Optional a filter on attributes can be defined.<br> attributes is a JSON-formated string. <br> This object is an array of LetterAtributte 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsGet(axiosConfig?: any): AxiosPromise<Array<Document>> {
-            return localVarFp.documentsGet(axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Uploads a new document. The document shall be a letter or a serial letter.</br>  The letter contains a valid address in the proper print area and respects the exclusion areas.</br>  The content must be base64 encoded. The document will be validated.</br>  If validation fails, an optional correction (transformation, cover page, address label) will be provided.</br> The response will contain a valid document (letter/serial letter) or an \'error\' object.</br>  The document is normalized with ghostscript, therefore we recommend a visible check of the document with GET /documents/{documentID}/pdf.  The document status can have the following codes:    2 (is shippable),      7 (is erroneous)    
-                * @param {DocumentsGetRequest} [upload] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        documentsPost(upload?: DocumentsGetRequest, axiosConfig?: any): AxiosPromise<Document> {
-            return localVarFp.documentsPost(upload, axiosConfig).then((request) => request(axios, basePath));
+        updateDocumentTransformation(documentID: number, transformation: UpdateDocumentTransformationRequest, axiosConfig?: any): AxiosPromise<Document> {
+            return localVarFp.updateDocumentTransformation(documentID, transformation, axiosConfig).then((request) => request(axios, basePath));
             },
         };
         };
@@ -3819,18 +3819,6 @@ export interface User {
         */
             export class DocumentsApi extends BaseAPI {
             /**
-            * Remove an attachment from the document 
-                    * @param {number} documentID 
-                    * @param {number} attachmentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDAttachmentsAttachmentIDDelete(documentID: number, attachmentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDAttachmentsAttachmentIDDelete(documentID, attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
             * Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned 
                     * @param {number} documentID 
                     * @param {number} attachmentID 
@@ -3838,8 +3826,54 @@ export interface User {
             * @throws {RequiredError}
             * @memberof DocumentsApi
             */
-                public documentsDocumentIDAttachmentsAttachmentIDPost(documentID: number, attachmentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDAttachmentsAttachmentIDPost(documentID, attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public appendDocumentAttachment(documentID: number, attachmentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).appendDocumentAttachment(documentID, attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Uploads a new document. The document shall be a letter or a serial letter.</br>  The letter contains a valid address in the proper print area and respects the exclusion areas.</br>  The content must be base64 encoded. The document will be validated.</br>  If validation fails, an optional correction (transformation, cover page, address label) will be provided.</br> The response will contain a valid document (letter/serial letter) or an \'error\' object.</br>  The document is normalized with ghostscript, therefore we recommend a visible check of the document with GET /documents/{documentID}/pdf.  The document status can have the following codes:    2 (is shippable),      7 (is erroneous)    
+                    * @param {CreateDocumentRequest} [upload] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public createDocument(upload?: CreateDocumentRequest, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).createDocument(upload, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned 
+                    * @param {number} documentID 
+                    * @param {CreateDocumentAttachmentRequest} [appendAttachment] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public createDocumentAttachment(documentID: number, appendAttachment?: CreateDocumentAttachmentRequest, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).createDocumentAttachment(documentID, appendAttachment, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Marks the document with certain attributes. 
+                    * @param {number} documentID 
+                    * @param {Array<LetterAttribute>} [attributes] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public createDocumentAttributes(documentID: number, attributes?: Array<LetterAttribute>, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).createDocumentAttributes(documentID, attributes, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Deletes the referenced document. 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public deleteDocument(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).deleteDocument(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -3849,54 +3883,8 @@ export interface User {
             * @throws {RequiredError}
             * @memberof DocumentsApi
             */
-                public documentsDocumentIDAttachmentsDelete(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDAttachmentsDelete(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets document\'s all attachments 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDAttachmentsGet(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDAttachmentsGet(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Append a list of attachments to a document.</br>Already appended attachments stay unchanged.</br>The new attachments will be append at the end in order of list. If the order of the attachments is important take care of this.
-                    * @param {number} documentID 
-                    * @param {Array<number>} [attachmentIDs] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDAttachmentsPatch(documentID: number, attachmentIDs?: Array<number>, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDAttachmentsPatch(documentID, attachmentIDs, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned 
-                    * @param {number} documentID 
-                    * @param {DocumentsDocumentIDAttachmentsDeleteRequest} [appendAttachment] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDAttachmentsPost(documentID: number, appendAttachment?: DocumentsDocumentIDAttachmentsDeleteRequest, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDAttachmentsPost(documentID, appendAttachment, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets document\'s attributes 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDAttributesGet(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDAttributesGet(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public deleteDocumentAttachments(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).deleteDocumentAttachments(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -3907,8 +3895,84 @@ export interface User {
             * @throws {RequiredError}
             * @memberof DocumentsApi
             */
-                public documentsDocumentIDAttributesKeyDelete(documentID: number, key: string, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDAttributesKeyDelete(documentID, key, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public deleteDocumentAttribute(documentID: number, key: string, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).deleteDocumentAttribute(documentID, key, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Removes the cover page from the document. 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public deleteDocumentCoverpage(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).deleteDocumentCoverpage(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Removes the performed transformation on the document and rolls back to the original version of the document 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public deleteDocumentTransformation(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).deleteDocumentTransformation(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets all uploaded letters which were marked with the given attributes.<br> There must be at least one pair of the parameters key and value. Take care that of the order of the keys and values.  
+                    * @param {Array<string>} key 
+                    * @param {Array<string>} value 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public findDocumentByAttributes(key: Array<string>, value: Array<string>, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).findDocumentByAttributes(key, value, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets all uploaded letter references which are shippable.  Shippable documents can have the following status codes:    2 (is shippable) <br><br> Optional a filter on attributes can be defined.<br> attributes is a JSON-formated string. <br> This object is an array of LetterAtributte 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public getAllDocuments(axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).getAllDocuments(axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets all uploaded letter references which are erroneous.  Erroneous documents can have the following status codes:    7 (erroneous) 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public getAllErrors(axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).getAllErrors(axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets the referenced document. The document is a letter, a serial letter or an \'error\' object. 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public getDocument(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).getDocument(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets document\'s all attachments 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public getDocumentAttachments(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).getDocumentAttachments(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -3919,8 +3983,87 @@ export interface User {
             * @throws {RequiredError}
             * @memberof DocumentsApi
             */
-                public documentsDocumentIDAttributesKeyGet(documentID: number, key: string, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDAttributesKeyGet(documentID, key, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public getDocumentAttribute(documentID: number, key: string, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).getDocumentAttribute(documentID, key, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets document\'s attributes 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public getDocumentAttributes(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).getDocumentAttributes(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets document\'s options. 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public getDocumentOptions(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).getDocumentOptions(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets the referenced document as PDF preview. 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public getDocumentPdf(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).getDocumentPdf(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets the referenced document as PNG preview. 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public getDocumentPng(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).getDocumentPng(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets status of a document 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public getDocumentStatus(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).getDocumentStatus(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Append a list of attachments to a document.</br>Already appended attachments stay unchanged.</br>The new attachments will be append at the end in order of list. If the order of the attachments is important take care of this.
+                    * @param {number} documentID 
+                    * @param {Array<number>} [attachmentIDs] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public patchDocumentAttachments(documentID: number, attachmentIDs?: Array<number>, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).patchDocumentAttachments(documentID, attachmentIDs, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Remove an attachment from the document 
+                    * @param {number} documentID 
+                    * @param {number} attachmentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof DocumentsApi
+            */
+                public removeDocumentAttachment(documentID: number, attachmentID: number, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).removeDocumentAttachment(documentID, attachmentID, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -3932,76 +4075,20 @@ export interface User {
             * @throws {RequiredError}
             * @memberof DocumentsApi
             */
-                public documentsDocumentIDAttributesKeyPut(documentID: number, key: string, value: string, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDAttributesKeyPut(documentID, key, value, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Marks the document with certain attributes. 
-                    * @param {number} documentID 
-                    * @param {Array<LetterAttribute>} [attributes] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDAttributesPost(documentID: number, attributes?: Array<LetterAttribute>, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDAttributesPost(documentID, attributes, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Removes the cover page from the document. 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDCoverpageDelete(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDCoverpageDelete(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public updateDocumentAttribute(documentID: number, key: string, value: string, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).updateDocumentAttribute(documentID, key, value, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
             * Creates a cover page for the document, so a receiving address is obligatory. <br> The return address is optional, also the text on the coverpage below the address. 
                     * @param {number} documentID 
-                    * @param {DocumentsDocumentIDCoverpageDeleteRequest} [coverPage] 
+                    * @param {UpdateDocumentCoverpageRequest} [coverPage] 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             * @memberof DocumentsApi
             */
-                public documentsDocumentIDCoverpagePut(documentID: number, coverPage?: DocumentsDocumentIDCoverpageDeleteRequest, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDCoverpagePut(documentID, coverPage, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Deletes the referenced document. 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDDelete(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDDelete(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets the referenced document. The document is a letter, a serial letter or an \'error\' object. 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDGet(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDGet(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets document\'s options. 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDOptionsGet(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDOptionsGet(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public updateDocumentCoverpage(documentID: number, coverPage?: UpdateDocumentCoverpageRequest, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).updateDocumentCoverpage(documentID, coverPage, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -4012,107 +4099,20 @@ export interface User {
             * @throws {RequiredError}
             * @memberof DocumentsApi
             */
-                public documentsDocumentIDOptionsPut(documentID: number, options?: Options, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDOptionsPut(documentID, options, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets the referenced document as PDF preview. 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDPdfGet(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDPdfGet(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets the referenced document as PNG preview. 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDPngGet(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDPngGet(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets status of a document 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDStatusGet(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDStatusGet(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Removes the performed transformation on the document and rolls back to the original version of the document 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsDocumentIDTransformationsDelete(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDTransformationsDelete(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public updateDocumentOptions(documentID: number, options?: Options, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).updateDocumentOptions(documentID, options, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
             * Applies a transformation of the document\'s first page. <br>  After transformation, the document is validated once more. Therefore, please check the document\'s status again after performing any transformations.   <br>  Every transformation is applied on the original version of the document. <br>  \"offsetX\" and \"offsetY\" affect the horizontal and vertical position, moving the document along the x and y axis, using [mm] as a unit. Starting point is the upper left corner of the page.  <br>   Also scaleX and scaleY can be independently used for scaling. Factor 1 corresponds to 100%, so in order to shrink, use values smaller than 1. Scaling refers to the center of the page.  
                     * @param {number} documentID 
-                    * @param {DocumentsDocumentIDTransformationsDeleteRequest} transformation 
+                    * @param {UpdateDocumentTransformationRequest} transformation 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             * @memberof DocumentsApi
             */
-                public documentsDocumentIDTransformationsPut(documentID: number, transformation: DocumentsDocumentIDTransformationsDeleteRequest, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsDocumentIDTransformationsPut(documentID, transformation, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets all uploaded letter references which are erroneous.  Erroneous documents can have the following status codes:    7 (erroneous) 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsErrorsGet(axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsErrorsGet(axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets all uploaded letters which were marked with the given attributes.<br> There must be at least one pair of the parameters key and value. Take care that of the order of the keys and values.  
-                    * @param {Array<string>} key 
-                    * @param {Array<string>} value 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsFindbyAttributesGet(key: Array<string>, value: Array<string>, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsFindbyAttributesGet(key, value, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets all uploaded letter references which are shippable.  Shippable documents can have the following status codes:    2 (is shippable) <br><br> Optional a filter on attributes can be defined.<br> attributes is a JSON-formated string. <br> This object is an array of LetterAtributte 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsGet(axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsGet(axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Uploads a new document. The document shall be a letter or a serial letter.</br>  The letter contains a valid address in the proper print area and respects the exclusion areas.</br>  The content must be base64 encoded. The document will be validated.</br>  If validation fails, an optional correction (transformation, cover page, address label) will be provided.</br> The response will contain a valid document (letter/serial letter) or an \'error\' object.</br>  The document is normalized with ghostscript, therefore we recommend a visible check of the document with GET /documents/{documentID}/pdf.  The document status can have the following codes:    2 (is shippable),      7 (is erroneous)    
-                    * @param {DocumentsGetRequest} [upload] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof DocumentsApi
-            */
-                public documentsPost(upload?: DocumentsGetRequest, axiosConfig?: AxiosRequestConfig) {
-                return DocumentsApiFp(this.configuration).documentsPost(upload, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public updateDocumentTransformation(documentID: number, transformation: UpdateDocumentTransformationRequest, axiosConfig?: AxiosRequestConfig) {
+                return DocumentsApiFp(this.configuration).updateDocumentTransformation(documentID, transformation, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
         }
 
@@ -4124,47 +4124,14 @@ export interface User {
     export const InvoicesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-        * Gets all stored invoices references. 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        invoicesGet: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/invoices`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
         * Gets all transctions of the invoice. 
             * @param {string} invoiceNumber 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        invoicesInvoiceNumberGet: async (invoiceNumber: string, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getInvoice: async (invoiceNumber: string, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'invoiceNumber' is not null or undefined
-                    assertParamExists('invoicesInvoiceNumberGet', 'invoiceNumber', invoiceNumber)
+                    assertParamExists('getInvoice', 'invoiceNumber', invoiceNumber)
             const localVarPath = `/invoices/{invoiceNumber}`
                 .replace(`{${"invoiceNumber"}}`, encodeURIComponent(String(invoiceNumber)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -4199,11 +4166,44 @@ export interface User {
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        invoicesInvoiceNumberPdfGet: async (invoiceNumber: string, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getInvoicePdf: async (invoiceNumber: string, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'invoiceNumber' is not null or undefined
-                    assertParamExists('invoicesInvoiceNumberPdfGet', 'invoiceNumber', invoiceNumber)
+                    assertParamExists('getInvoicePdf', 'invoiceNumber', invoiceNumber)
             const localVarPath = `/invoices/{invoiceNumber}/pdf`
                 .replace(`{${"invoiceNumber"}}`, encodeURIComponent(String(invoiceNumber)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Gets all stored invoices references. 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        getInvoices: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/invoices`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4241,22 +4241,13 @@ export interface User {
         const localVarAxiosParamCreator = InvoicesApiAxiosParamCreator(configuration)
         return {
             /**
-            * Gets all stored invoices references. 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async invoicesGet(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Invoice>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.invoicesGet(axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
             * Gets all transctions of the invoice. 
                 * @param {string} invoiceNumber 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async invoicesInvoiceNumberGet(invoiceNumber: string, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Transaction>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.invoicesInvoiceNumberGet(invoiceNumber, axiosConfig);
+            async getInvoice(invoiceNumber: string, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Transaction>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInvoice(invoiceNumber, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -4265,8 +4256,17 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async invoicesInvoiceNumberPdfGet(invoiceNumber: string, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.invoicesInvoiceNumberPdfGet(invoiceNumber, axiosConfig);
+            async getInvoicePdf(invoiceNumber: string, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInvoicePdf(invoiceNumber, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets all stored invoices references. 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getInvoices(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Invoice>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInvoices(axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
         }
@@ -4280,21 +4280,13 @@ export interface User {
         const localVarFp = InvoicesApiFp(configuration)
         return {
             /**
-            * Gets all stored invoices references. 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        invoicesGet(axiosConfig?: any): AxiosPromise<Array<Invoice>> {
-            return localVarFp.invoicesGet(axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
             * Gets all transctions of the invoice. 
                 * @param {string} invoiceNumber 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        invoicesInvoiceNumberGet(invoiceNumber: string, axiosConfig?: any): AxiosPromise<Array<Transaction>> {
-            return localVarFp.invoicesInvoiceNumberGet(invoiceNumber, axiosConfig).then((request) => request(axios, basePath));
+        getInvoice(invoiceNumber: string, axiosConfig?: any): AxiosPromise<Array<Transaction>> {
+            return localVarFp.getInvoice(invoiceNumber, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Get a specific invoice as PDF. 
@@ -4302,8 +4294,16 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        invoicesInvoiceNumberPdfGet(invoiceNumber: string, axiosConfig?: any): AxiosPromise<any> {
-            return localVarFp.invoicesInvoiceNumberPdfGet(invoiceNumber, axiosConfig).then((request) => request(axios, basePath));
+        getInvoicePdf(invoiceNumber: string, axiosConfig?: any): AxiosPromise<any> {
+            return localVarFp.getInvoicePdf(invoiceNumber, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets all stored invoices references. 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getInvoices(axiosConfig?: any): AxiosPromise<Array<Invoice>> {
+            return localVarFp.getInvoices(axiosConfig).then((request) => request(axios, basePath));
             },
         };
         };
@@ -4316,24 +4316,14 @@ export interface User {
         */
             export class InvoicesApi extends BaseAPI {
             /**
-            * Gets all stored invoices references. 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof InvoicesApi
-            */
-                public invoicesGet(axiosConfig?: AxiosRequestConfig) {
-                return InvoicesApiFp(this.configuration).invoicesGet(axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
             * Gets all transctions of the invoice. 
                     * @param {string} invoiceNumber 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             * @memberof InvoicesApi
             */
-                public invoicesInvoiceNumberGet(invoiceNumber: string, axiosConfig?: AxiosRequestConfig) {
-                return InvoicesApiFp(this.configuration).invoicesInvoiceNumberGet(invoiceNumber, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public getInvoice(invoiceNumber: string, axiosConfig?: AxiosRequestConfig) {
+                return InvoicesApiFp(this.configuration).getInvoice(invoiceNumber, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -4343,8 +4333,18 @@ export interface User {
             * @throws {RequiredError}
             * @memberof InvoicesApi
             */
-                public invoicesInvoiceNumberPdfGet(invoiceNumber: string, axiosConfig?: AxiosRequestConfig) {
-                return InvoicesApiFp(this.configuration).invoicesInvoiceNumberPdfGet(invoiceNumber, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public getInvoicePdf(invoiceNumber: string, axiosConfig?: AxiosRequestConfig) {
+                return InvoicesApiFp(this.configuration).getInvoicePdf(invoiceNumber, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets all stored invoices references. 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof InvoicesApi
+            */
+                public getInvoices(axiosConfig?: AxiosRequestConfig) {
+                return InvoicesApiFp(this.configuration).getInvoices(axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
         }
 
@@ -4356,14 +4356,162 @@ export interface User {
     export const SendingsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+        * Cancels the delivery of a letter, if it isn\'t already shipped. 
+            * @param {number} documentID 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        cancelSendingForDocument: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('cancelSendingForDocument', 'documentID', documentID)
+            const localVarPath = `/sendings/{documentID}`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Cancels the delivery of a list of letters (list of IDs). Only not shipped letters  are canceled.  . 
+            * @param {Array<number>} [documentIds] 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        cancelSendings: async (documentIds?: Array<number>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/sendings`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+                    localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+                localVarRequestOptions.data = serializeDataIfNeeded(documentIds, localVarRequestOptions, configuration)
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Announces the delivery of a letter, if it isn\'t yet shipped. 
+            * @param {number} documentID 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        createSendingForDocument: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('createSendingForDocument', 'documentID', documentID)
+            const localVarPath = `/sendings/{documentID}`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
+        * Announces a letter (its ID) or a list of letters (list of IDs) which are already uploaded for delivering. 
+            * @param {Array<number>} [documentIds] 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        createSendings: async (documentIds?: Array<number>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/sendings`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+                    localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+                localVarRequestOptions.data = serializeDataIfNeeded(documentIds, localVarRequestOptions, configuration)
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
+        /**
         * Deletes a canceled or a delivered and sent document from the system. 
             * @param {number} documentID 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        sendingsDocumentIDDelete: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteSendingForDocument: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('sendingsDocumentIDDelete', 'documentID', documentID)
+                    assertParamExists('deleteSendingForDocument', 'documentID', documentID)
             const localVarPath = `/sendings/{documentID}`
                 .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -4393,16 +4541,12 @@ export interface User {
             };
             },
         /**
-        * Gets a referenced sending. The sending is a letter, serial letter or an \'error\' object. 
-            * @param {number} documentID 
+        * Gets all document references, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        sendingsDocumentIDGet: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('sendingsDocumentIDGet', 'documentID', documentID)
-            const localVarPath = `/sendings/{documentID}`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
+        getAllSendings: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/sendings`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4430,88 +4574,14 @@ export interface User {
             };
             },
         /**
-        * Announces the delivery of a letter, if it isn\'t yet shipped. 
-            * @param {number} documentID 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        sendingsDocumentIDPost: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('sendingsDocumentIDPost', 'documentID', documentID)
-            const localVarPath = `/sendings/{documentID}`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Cancels the delivery of a letter, if it isn\'t already shipped. 
-            * @param {number} documentID 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        sendingsDocumentIDPut: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-                    // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('sendingsDocumentIDPut', 'documentID', documentID)
-            const localVarPath = `/sendings/{documentID}`
-                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
         * Gets status of a document, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
             * @param {number} documentID 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        sendingsDocumentIDStatusGet: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSendingDocumentStatus: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
                     // verify required parameter 'documentID' is not null or undefined
-                    assertParamExists('sendingsDocumentIDStatusGet', 'documentID', documentID)
+                    assertParamExists('getSendingDocumentStatus', 'documentID', documentID)
             const localVarPath = `/sendings/{documentID}/status`
                 .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -4541,49 +4611,16 @@ export interface User {
             };
             },
         /**
-        * Document is directly sent after upload, if it is successfully validated. 
-            * @param {SendingsDocumentPostRequest} [shipping] 
+        * Gets a referenced sending. The sending is a letter, serial letter or an \'error\' object. 
+            * @param {number} documentID 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        sendingsDocumentPost: async (shipping?: SendingsDocumentPostRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/sendings/document`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-                    localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-                localVarRequestOptions.data = serializeDataIfNeeded(shipping, localVarRequestOptions, configuration)
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Gets all document references, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        sendingsGet: async (axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/sendings`;
+        getSendingForDocument: async (documentID: number, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+                    // verify required parameter 'documentID' is not null or undefined
+                    assertParamExists('getSendingForDocument', 'documentID', documentID)
+            const localVarPath = `/sendings/{documentID}`
+                .replace(`{${"documentID"}}`, encodeURIComponent(String(documentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4611,86 +4648,12 @@ export interface User {
             };
             },
         /**
-        * Announces a letter (its ID) or a list of letters (list of IDs) which are already uploaded for delivering. 
-            * @param {Array<number>} [documentIds] 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        sendingsPost: async (documentIds?: Array<number>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/sendings`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-                    localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-                localVarRequestOptions.data = serializeDataIfNeeded(documentIds, localVarRequestOptions, configuration)
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
-        * Cancels the delivery of a list of letters (list of IDs). Only not shipped letters  are canceled.  . 
-            * @param {Array<number>} [documentIds] 
-        * @param {*} [axiosConfig] Override http request option.
-        * @throws {RequiredError}
-        */
-        sendingsPut: async (documentIds?: Array<number>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/sendings`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-            baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...axiosConfig};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-                // authentication basicAuth required
-                    // http basic authentication required
-                    setBasicAuthToObject(localVarRequestOptions, configuration)
-
-
-        
-                    localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
-                localVarRequestOptions.data = serializeDataIfNeeded(documentIds, localVarRequestOptions, configuration)
-
-            return {
-            url: toPathString(localVarUrlObj),
-            options: localVarRequestOptions,
-            };
-            },
-        /**
         * Gets status of all documents, which are prepared for delivering or are already delivered.   The Query can be optional narrowed with a list of DocumentIds.   Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
             * @param {Array<number>} [documentIds] 
         * @param {*} [axiosConfig] Override http request option.
         * @throws {RequiredError}
         */
-        sendingsStatusGet: async (documentIds?: Array<number>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSendingStatus: async (documentIds?: Array<number>, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/sendings/status`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4722,6 +4685,43 @@ export interface User {
             options: localVarRequestOptions,
             };
             },
+        /**
+        * Document is directly sent after upload, if it is successfully validated. 
+            * @param {SendDocumentRequest} [shipping] 
+        * @param {*} [axiosConfig] Override http request option.
+        * @throws {RequiredError}
+        */
+        sendDocument: async (shipping?: SendDocumentRequest, axiosConfig: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/sendings/document`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+            baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...axiosConfig};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+                // authentication basicAuth required
+                    // http basic authentication required
+                    setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+        
+                    localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...axiosConfig.headers};
+                localVarRequestOptions.data = serializeDataIfNeeded(shipping, localVarRequestOptions, configuration)
+
+            return {
+            url: toPathString(localVarUrlObj),
+            options: localVarRequestOptions,
+            };
+            },
         }
         };
 
@@ -4733,82 +4733,13 @@ export interface User {
         const localVarAxiosParamCreator = SendingsApiAxiosParamCreator(configuration)
         return {
             /**
-            * Deletes a canceled or a delivered and sent document from the system. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async sendingsDocumentIDDelete(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendingsDocumentIDDelete(documentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets a referenced sending. The sending is a letter, serial letter or an \'error\' object. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async sendingsDocumentIDGet(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendingsDocumentIDGet(documentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Announces the delivery of a letter, if it isn\'t yet shipped. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async sendingsDocumentIDPost(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendingsDocumentIDPost(documentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
             * Cancels the delivery of a letter, if it isn\'t already shipped. 
                 * @param {number} documentID 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async sendingsDocumentIDPut(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Status>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendingsDocumentIDPut(documentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets status of a document, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async sendingsDocumentIDStatusGet(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DocumentStatus>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendingsDocumentIDStatusGet(documentID, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Document is directly sent after upload, if it is successfully validated. 
-                * @param {SendingsDocumentPostRequest} [shipping] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async sendingsDocumentPost(shipping?: SendingsDocumentPostRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendingsDocumentPost(shipping, axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Gets all document references, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async sendingsGet(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Document>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendingsGet(axiosConfig);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-            },
-            /**
-            * Announces a letter (its ID) or a list of letters (list of IDs) which are already uploaded for delivering. 
-                * @param {Array<number>} [documentIds] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-            async sendingsPost(documentIds?: Array<number>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Document>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendingsPost(documentIds, axiosConfig);
+            async cancelSendingForDocument(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Status>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelSendingForDocument(documentID, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -4817,8 +4748,67 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async sendingsPut(documentIds?: Array<number>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DocumentStatus>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendingsPut(documentIds, axiosConfig);
+            async cancelSendings(documentIds?: Array<number>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DocumentStatus>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelSendings(documentIds, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Announces the delivery of a letter, if it isn\'t yet shipped. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async createSendingForDocument(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createSendingForDocument(documentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Announces a letter (its ID) or a list of letters (list of IDs) which are already uploaded for delivering. 
+                * @param {Array<number>} [documentIds] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async createSendings(documentIds?: Array<number>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Document>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createSendings(documentIds, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Deletes a canceled or a delivered and sent document from the system. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async deleteSendingForDocument(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteSendingForDocument(documentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets all document references, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getAllSendings(axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Document>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllSendings(axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets status of a document, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getSendingDocumentStatus(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DocumentStatus>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSendingDocumentStatus(documentID, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Gets a referenced sending. The sending is a letter, serial letter or an \'error\' object. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async getSendingForDocument(documentID: number, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSendingForDocument(documentID, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
             /**
@@ -4827,8 +4817,18 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-            async sendingsStatusGet(documentIds?: Array<number>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DocumentStatus>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendingsStatusGet(documentIds, axiosConfig);
+            async getSendingStatus(documentIds?: Array<number>, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DocumentStatus>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSendingStatus(documentIds, axiosConfig);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            },
+            /**
+            * Document is directly sent after upload, if it is successfully validated. 
+                * @param {SendDocumentRequest} [shipping] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+            async sendDocument(shipping?: SendDocumentRequest, axiosConfig?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Document>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.sendDocument(shipping, axiosConfig);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
             },
         }
@@ -4842,75 +4842,13 @@ export interface User {
         const localVarFp = SendingsApiFp(configuration)
         return {
             /**
-            * Deletes a canceled or a delivered and sent document from the system. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        sendingsDocumentIDDelete(documentID: number, axiosConfig?: any): AxiosPromise<void> {
-            return localVarFp.sendingsDocumentIDDelete(documentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets a referenced sending. The sending is a letter, serial letter or an \'error\' object. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        sendingsDocumentIDGet(documentID: number, axiosConfig?: any): AxiosPromise<Document> {
-            return localVarFp.sendingsDocumentIDGet(documentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Announces the delivery of a letter, if it isn\'t yet shipped. 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        sendingsDocumentIDPost(documentID: number, axiosConfig?: any): AxiosPromise<Document> {
-            return localVarFp.sendingsDocumentIDPost(documentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
             * Cancels the delivery of a letter, if it isn\'t already shipped. 
                 * @param {number} documentID 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        sendingsDocumentIDPut(documentID: number, axiosConfig?: any): AxiosPromise<Status> {
-            return localVarFp.sendingsDocumentIDPut(documentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets status of a document, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
-                * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        sendingsDocumentIDStatusGet(documentID: number, axiosConfig?: any): AxiosPromise<DocumentStatus> {
-            return localVarFp.sendingsDocumentIDStatusGet(documentID, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Document is directly sent after upload, if it is successfully validated. 
-                * @param {SendingsDocumentPostRequest} [shipping] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        sendingsDocumentPost(shipping?: SendingsDocumentPostRequest, axiosConfig?: any): AxiosPromise<Document> {
-            return localVarFp.sendingsDocumentPost(shipping, axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Gets all document references, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        sendingsGet(axiosConfig?: any): AxiosPromise<Array<Document>> {
-            return localVarFp.sendingsGet(axiosConfig).then((request) => request(axios, basePath));
-            },
-            /**
-            * Announces a letter (its ID) or a list of letters (list of IDs) which are already uploaded for delivering. 
-                * @param {Array<number>} [documentIds] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            */
-        sendingsPost(documentIds?: Array<number>, axiosConfig?: any): AxiosPromise<Array<Document>> {
-            return localVarFp.sendingsPost(documentIds, axiosConfig).then((request) => request(axios, basePath));
+        cancelSendingForDocument(documentID: number, axiosConfig?: any): AxiosPromise<Status> {
+            return localVarFp.cancelSendingForDocument(documentID, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Cancels the delivery of a list of letters (list of IDs). Only not shipped letters  are canceled.  . 
@@ -4918,8 +4856,61 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        sendingsPut(documentIds?: Array<number>, axiosConfig?: any): AxiosPromise<Array<DocumentStatus>> {
-            return localVarFp.sendingsPut(documentIds, axiosConfig).then((request) => request(axios, basePath));
+        cancelSendings(documentIds?: Array<number>, axiosConfig?: any): AxiosPromise<Array<DocumentStatus>> {
+            return localVarFp.cancelSendings(documentIds, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Announces the delivery of a letter, if it isn\'t yet shipped. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        createSendingForDocument(documentID: number, axiosConfig?: any): AxiosPromise<Document> {
+            return localVarFp.createSendingForDocument(documentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Announces a letter (its ID) or a list of letters (list of IDs) which are already uploaded for delivering. 
+                * @param {Array<number>} [documentIds] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        createSendings(documentIds?: Array<number>, axiosConfig?: any): AxiosPromise<Array<Document>> {
+            return localVarFp.createSendings(documentIds, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Deletes a canceled or a delivered and sent document from the system. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        deleteSendingForDocument(documentID: number, axiosConfig?: any): AxiosPromise<void> {
+            return localVarFp.deleteSendingForDocument(documentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets all document references, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getAllSendings(axiosConfig?: any): AxiosPromise<Array<Document>> {
+            return localVarFp.getAllSendings(axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets status of a document, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getSendingDocumentStatus(documentID: number, axiosConfig?: any): AxiosPromise<DocumentStatus> {
+            return localVarFp.getSendingDocumentStatus(documentID, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Gets a referenced sending. The sending is a letter, serial letter or an \'error\' object. 
+                * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        getSendingForDocument(documentID: number, axiosConfig?: any): AxiosPromise<Document> {
+            return localVarFp.getSendingForDocument(documentID, axiosConfig).then((request) => request(axios, basePath));
             },
             /**
             * Gets status of all documents, which are prepared for delivering or are already delivered.   The Query can be optional narrowed with a list of DocumentIds.   Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
@@ -4927,8 +4918,17 @@ export interface User {
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             */
-        sendingsStatusGet(documentIds?: Array<number>, axiosConfig?: any): AxiosPromise<Array<DocumentStatus>> {
-            return localVarFp.sendingsStatusGet(documentIds, axiosConfig).then((request) => request(axios, basePath));
+        getSendingStatus(documentIds?: Array<number>, axiosConfig?: any): AxiosPromise<Array<DocumentStatus>> {
+            return localVarFp.getSendingStatus(documentIds, axiosConfig).then((request) => request(axios, basePath));
+            },
+            /**
+            * Document is directly sent after upload, if it is successfully validated. 
+                * @param {SendDocumentRequest} [shipping] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            */
+        sendDocument(shipping?: SendDocumentRequest, axiosConfig?: any): AxiosPromise<Document> {
+            return localVarFp.sendDocument(shipping, axiosConfig).then((request) => request(axios, basePath));
             },
         };
         };
@@ -4941,90 +4941,14 @@ export interface User {
         */
             export class SendingsApi extends BaseAPI {
             /**
-            * Deletes a canceled or a delivered and sent document from the system. 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof SendingsApi
-            */
-                public sendingsDocumentIDDelete(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return SendingsApiFp(this.configuration).sendingsDocumentIDDelete(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets a referenced sending. The sending is a letter, serial letter or an \'error\' object. 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof SendingsApi
-            */
-                public sendingsDocumentIDGet(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return SendingsApiFp(this.configuration).sendingsDocumentIDGet(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Announces the delivery of a letter, if it isn\'t yet shipped. 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof SendingsApi
-            */
-                public sendingsDocumentIDPost(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return SendingsApiFp(this.configuration).sendingsDocumentIDPost(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
             * Cancels the delivery of a letter, if it isn\'t already shipped. 
                     * @param {number} documentID 
             * @param {*} [axiosConfig] Override http request option.
             * @throws {RequiredError}
             * @memberof SendingsApi
             */
-                public sendingsDocumentIDPut(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return SendingsApiFp(this.configuration).sendingsDocumentIDPut(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets status of a document, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
-                    * @param {number} documentID 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof SendingsApi
-            */
-                public sendingsDocumentIDStatusGet(documentID: number, axiosConfig?: AxiosRequestConfig) {
-                return SendingsApiFp(this.configuration).sendingsDocumentIDStatusGet(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Document is directly sent after upload, if it is successfully validated. 
-                    * @param {SendingsDocumentPostRequest} [shipping] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof SendingsApi
-            */
-                public sendingsDocumentPost(shipping?: SendingsDocumentPostRequest, axiosConfig?: AxiosRequestConfig) {
-                return SendingsApiFp(this.configuration).sendingsDocumentPost(shipping, axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Gets all document references, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof SendingsApi
-            */
-                public sendingsGet(axiosConfig?: AxiosRequestConfig) {
-                return SendingsApiFp(this.configuration).sendingsGet(axiosConfig).then((request) => request(this.axios, this.basePath));
-                }
-
-            /**
-            * Announces a letter (its ID) or a list of letters (list of IDs) which are already uploaded for delivering. 
-                    * @param {Array<number>} [documentIds] 
-            * @param {*} [axiosConfig] Override http request option.
-            * @throws {RequiredError}
-            * @memberof SendingsApi
-            */
-                public sendingsPost(documentIds?: Array<number>, axiosConfig?: AxiosRequestConfig) {
-                return SendingsApiFp(this.configuration).sendingsPost(documentIds, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public cancelSendingForDocument(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return SendingsApiFp(this.configuration).cancelSendingForDocument(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -5034,8 +4958,73 @@ export interface User {
             * @throws {RequiredError}
             * @memberof SendingsApi
             */
-                public sendingsPut(documentIds?: Array<number>, axiosConfig?: AxiosRequestConfig) {
-                return SendingsApiFp(this.configuration).sendingsPut(documentIds, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public cancelSendings(documentIds?: Array<number>, axiosConfig?: AxiosRequestConfig) {
+                return SendingsApiFp(this.configuration).cancelSendings(documentIds, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Announces the delivery of a letter, if it isn\'t yet shipped. 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof SendingsApi
+            */
+                public createSendingForDocument(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return SendingsApiFp(this.configuration).createSendingForDocument(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Announces a letter (its ID) or a list of letters (list of IDs) which are already uploaded for delivering. 
+                    * @param {Array<number>} [documentIds] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof SendingsApi
+            */
+                public createSendings(documentIds?: Array<number>, axiosConfig?: AxiosRequestConfig) {
+                return SendingsApiFp(this.configuration).createSendings(documentIds, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Deletes a canceled or a delivered and sent document from the system. 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof SendingsApi
+            */
+                public deleteSendingForDocument(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return SendingsApiFp(this.configuration).deleteSendingForDocument(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets all document references, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof SendingsApi
+            */
+                public getAllSendings(axiosConfig?: AxiosRequestConfig) {
+                return SendingsApiFp(this.configuration).getAllSendings(axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets status of a document, which are prepared for delivering or are already delivered.  Sendings can have the following status codes:       3 (in production, waiting to be sent),        4 (in print process),        5 (is sent),        6 (is canceled),        7 (is erroneous) 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof SendingsApi
+            */
+                public getSendingDocumentStatus(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return SendingsApiFp(this.configuration).getSendingDocumentStatus(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Gets a referenced sending. The sending is a letter, serial letter or an \'error\' object. 
+                    * @param {number} documentID 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof SendingsApi
+            */
+                public getSendingForDocument(documentID: number, axiosConfig?: AxiosRequestConfig) {
+                return SendingsApiFp(this.configuration).getSendingForDocument(documentID, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
 
             /**
@@ -5045,8 +5034,19 @@ export interface User {
             * @throws {RequiredError}
             * @memberof SendingsApi
             */
-                public sendingsStatusGet(documentIds?: Array<number>, axiosConfig?: AxiosRequestConfig) {
-                return SendingsApiFp(this.configuration).sendingsStatusGet(documentIds, axiosConfig).then((request) => request(this.axios, this.basePath));
+                public getSendingStatus(documentIds?: Array<number>, axiosConfig?: AxiosRequestConfig) {
+                return SendingsApiFp(this.configuration).getSendingStatus(documentIds, axiosConfig).then((request) => request(this.axios, this.basePath));
+                }
+
+            /**
+            * Document is directly sent after upload, if it is successfully validated. 
+                    * @param {SendDocumentRequest} [shipping] 
+            * @param {*} [axiosConfig] Override http request option.
+            * @throws {RequiredError}
+            * @memberof SendingsApi
+            */
+                public sendDocument(shipping?: SendDocumentRequest, axiosConfig?: AxiosRequestConfig) {
+                return SendingsApiFp(this.configuration).sendDocument(shipping, axiosConfig).then((request) => request(this.axios, this.basePath));
                 }
         }
 

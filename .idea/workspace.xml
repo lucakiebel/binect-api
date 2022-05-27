@@ -5,22 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f17cfc85-5601-4cd8-a66f-61392a4951f1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/examples/createDocument.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/getAllDocuments.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/sendLetter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/.openapi-generator-ignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/.openapi-generator/FILES" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/.openapi-generator/VERSION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/api.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/base.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/common.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/configuration.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/git_push.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/createDocument.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/createDocument.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/getAllDocuments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/getAllDocuments.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/sendLetter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/sendLetter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/base.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/base.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +50,23 @@
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.build" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

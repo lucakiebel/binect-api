@@ -1,0 +1,1942 @@
+swagger: '2.0'
+info:
+  version: 0.9.5-beta
+  description: |-
+    Webservice für den Briefversand. Ihre Briefe werden durch unser System ausgedruckt, kuvertiert, frankiert und zur Deutschen Post gebracht.
+
+    Für eine detaillierte Beschreibung schauen Sie bitte in das Modell. </br></br>Hinweis: Wenn Sie als Benutzer eingeloggt sind, laufen alle Anfragen gegen das Produktiv-System. </br>Somit stornieren, l&ouml;schen, ... oder versenden Sie Ihre Briefe wirklich!</br> Falls Sie Zugriff auf unser Testsystem ben&ouml;tigen, stellen Sie gerne eine Anfrage an kontakt@binect.de.
+  title: Binect API REST
+  termsOfService: https://app.binect.de/downloadFile?fileId=2
+  contact:
+    name: kontakt@binect.de
+host: app.binect.de
+basePath: /binectapi/v1
+schemes:
+  - https
+securityDefinitions:
+  basicAuth:
+    type: basic
+    description: HTTP Basic Authentication.
+security:
+  - basicAuth: []
+paths:
+  /documents:
+    post:
+      operationId: createDocument
+      tags:
+        - documents
+      description: |
+        Uploads a new document. The document shall be a letter or a serial letter.</br> 
+        The letter contains a valid address in the proper print area and respects the exclusion areas.</br> 
+        The content must be base64 encoded.
+        The document will be validated.</br> 
+        If validation fails, an optional correction (transformation, cover page, address label) will be provided.</br>
+        The response will contain a valid document (letter/serial letter) or an 'error' object.</br>
+
+        The document is normalized with ghostscript, therefore we recommend a visible check of the document with GET /documents/{documentID}/pdf.
+
+        The document status can have the following codes:
+
+          2 (is shippable),
+          
+          7 (is erroneous)
+          
+      parameters:
+        - name: upload
+          in: body
+          schema:
+            type: object
+            required:
+              - content
+            properties:
+              content:
+                $ref: '#/definitions/Content'
+              options:
+                $ref: '#/definitions/Options'
+              attributes:
+                type: array
+                items:
+                  $ref: '#/definitions/LetterAttribute'
+              splitParams:
+                description: If the uploaded document is a serial letter, define how it shall be split.
+                type: object
+                properties:
+                  splitToken:
+                    type: string
+                    description: This token is used to split the serial letter.
+                  splitAfterNumberOfPages:
+                    type: integer
+                    format: int32
+                    description: Every N pages the serial letter is split.
+      responses:
+        '200':
+          description: Document created, may be erroneous.
+          schema:
+            $ref: '#/definitions/Document'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '413':
+          description: Request Entity Too Large, Limit is 12 MB
+    get:
+      operationId: getAllDocuments
+      tags:
+        - documents
+      description: |
+        Gets all uploaded letter references which are shippable.
+
+        Shippable documents can have the following status codes:
+
+          2 (is shippable)
+        <br><br>
+        Optional a filter on attributes can be defined.<br>
+        attributes is a JSON-formated string. <br>
+        This object is an array of LetterAtributte
+      responses:
+        '200':
+          description: A list of all uploads which are shippable documents.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Document'
+        '403':
+          description: Forbidden
+  /documents/errors:
+    get:
+      operationId: getAllErrors
+      tags:
+        - documents
+      description: |
+        Gets all uploaded letter references which are erroneous.
+
+        Erroneous documents can have the following status codes:
+
+          7 (erroneous)
+      responses:
+        '200':
+          description: A list of all uploaded erroneous documents. Please check the error message in the response and also have a look at the preview.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Document'
+        '403':
+          description: Forbidden
+  /documents/{documentID}:
+    get:
+      operationId: getDocument
+      tags:
+        - documents
+      description: |
+        Gets the referenced document.
+        The document is a letter, a serial letter or an 'error' object.
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Document'
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+    delete:
+      operationId: deleteDocument
+      tags:
+        - documents
+      description: |
+        Deletes the referenced document.
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+  /documents/findbyAttributes:
+    get:
+      operationId: findDocumentByAttributes
+      tags:
+        - documents
+      description: |
+        Gets all uploaded letters which were marked with the given attributes.<br>
+        There must be at least one pair of the parameters key and value. Take care that of the order of the keys and values. 
+      parameters:
+        - name: key
+          in: query
+          required: true
+          type: array
+          items:
+            type: string
+          allowEmptyValue: false
+          collectionFormat: multi
+        - name: value
+          in: query
+          required: true
+          type: array
+          items:
+            type: string
+          allowEmptyValue: false
+          collectionFormat: multi
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Document'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+  /documents/{documentID}/status:
+    get:
+      operationId: getDocumentStatus
+      tags:
+        - documents
+      description: |
+        Gets status of a document
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/DocumentStatus'
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+  /documents/{documentID}/options:
+    get:
+      operationId: getDocumentOptions
+      tags:
+        - documents
+      description: |
+        Gets document's options.
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Options'
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+    put:
+      operationId: updateDocumentOptions
+      tags:
+        - documents
+      description: |
+        Updates document's options
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: options
+          in: body
+          schema:
+            $ref: '#/definitions/Options'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Options'
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+  /documents/{documentID}/attributes:
+    get:
+      operationId: getDocumentAttributes
+      tags:
+        - documents
+      description: |
+        Gets document's attributes
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LetterAttribute'
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+    post:
+      operationId: createDocumentAttributes
+      tags:
+        - documents
+      description: |
+        Marks the document with certain attributes.
+      parameters:
+        - in: path
+          name: documentID
+          required: true
+          type: integer
+          format: int32
+        - name: attributes
+          in: body
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LetterAttribute'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LetterAttribute'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+  /documents/{documentID}/attributes/{key}:
+    get:
+      operationId: getDocumentAttribute
+      tags:
+        - documents
+      description: |
+        Gets the document's attribute for a specified key.
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: key
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/LetterAttribute'
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+    put:
+      operationId: updateDocumentAttribute
+      tags:
+        - documents
+      description: |
+        Updates the document's attribute for a specified key.
+      consumes:
+        - application/x-www-form-urlencoded
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: key
+          in: path
+          required: true
+          type: string
+        - name: value
+          in: formData
+          required: true
+          type: string
+          allowEmptyValue: false
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/LetterAttribute'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+    delete:
+      operationId: deleteDocumentAttribute
+      tags:
+        - documents
+      description: |
+        Removes an attribute from the document.
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: key
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+  /documents/{documentID}/pdf:
+    get:
+      operationId: getDocumentPdf
+      tags:
+        - documents
+      description: |
+        Gets the referenced document as PDF preview.
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: file
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+        '406':
+          description: Not Acceptable
+  /documents/{documentID}/png:
+    get:
+      operationId: getDocumentPng
+      tags:
+        - documents
+      description: |
+        Gets the referenced document as PNG preview.
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: file
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+        '406':
+          description: Not Acceptable
+  /documents/{documentID}/transformations:
+    put:
+      operationId: updateDocumentTransformation
+      tags:
+        - documents
+      description: |
+        Applies a transformation of the document's first page. <br>  After transformation, the document is validated once more. Therefore, please check the document's status again after performing any transformations.   <br>  Every transformation is applied on the original version of the document. <br>  "offsetX" and "offsetY" affect the horizontal and vertical position, moving the document along the x and y axis, using [mm] as a unit. Starting point is the upper left corner of the page.  <br>   Also scaleX and scaleY can be independently used for scaling. Factor 1 corresponds to 100%, so in order to shrink, use values smaller than 1. Scaling refers to the center of the page. 
+      consumes:
+        - application/json
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: transformation
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              scaleX:
+                type: number
+                format: double
+              scaleY:
+                type: number
+                format: double
+              offsetX:
+                type: number
+                format: double
+              offsetY:
+                type: number
+                format: double
+      responses:
+        '200':
+          description: Document updated
+          schema:
+            $ref: '#/definitions/Document'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+    delete:
+      operationId: deleteDocumentTransformation
+      tags:
+        - documents
+      description: |
+        Removes the performed transformation on the document and rolls back to the original version of the document
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+  /documents/{documentID}/coverpage:
+    put:
+      operationId: updateDocumentCoverpage
+      tags:
+        - documents
+      description: |
+        Creates a cover page for the document, so a receiving address is obligatory. <br> The return address is optional, also the text on the coverpage below the address.
+      consumes:
+        - application/json
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: coverPage
+          in: body
+          schema:
+            type: object
+            required:
+              - receivingAddress
+            properties:
+              receivingAddress:
+                $ref: '#/definitions/Address'
+              returnAddress:
+                $ref: '#/definitions/Address'
+              coverText:
+                description: optional text on the cover page
+                type: object
+                required:
+                  - text
+                properties:
+                  subject:
+                    description: optional subject text on the cover page
+                    type: string
+                  date:
+                    description: optional date on the cover page
+                    type: string
+                    format: date
+                  text:
+                    description: Text on the cover page. Only plain text is supported. Start a new line with '\n'.
+                    type: string
+      responses:
+        '200':
+          description: Document updated
+          schema:
+            $ref: '#/definitions/Document'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+        '406':
+          description: Not Acceptable
+    delete:
+      operationId: deleteDocumentCoverpage
+      tags:
+        - documents
+      description: |
+        Removes the cover page from the document.
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+  /documents/{documentID}/attachments:
+    get:
+      operationId: getDocumentAttachments
+      tags:
+        - documents
+      description: |
+        Gets document's all attachments
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: List of attachments
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Attachment'
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+    post:
+      operationId: createDocumentAttachment
+      tags:
+        - documents
+      description: |
+        Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned
+      consumes:
+        - application/json
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: appendAttachment
+          in: body
+          schema:
+            type: object
+            required:
+              - content
+            properties:
+              content:
+                $ref: '#/definitions/Content'
+              newSheet:
+                description: The Attachment will start on the front page of a sheet
+                type: boolean
+                default: true
+              remarks:
+                description: Remarks to the attachment
+                type: string
+      responses:
+        '200':
+          description: Attachment created
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Attachment'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Document do not exist
+    patch:
+      operationId: patchDocumentAttachments
+      tags:
+        - documents
+      description: Append a list of attachments to a document.</br>Already appended attachments stay unchanged.</br>The new attachments will be append at the end in order of list. If the order of the attachments is important take care of this.
+      consumes:
+        - application/json
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: attachmentIDs
+          in: body
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+      responses:
+        '200':
+          description: Append a list of attachments to a document
+          schema:
+            $ref: '#/definitions/Document'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Document(s) do not exist
+    delete:
+      operationId: deleteDocumentAttachments
+      tags:
+        - documents
+      description: |
+        Detach all attachments of the document
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Document'
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+  /documents/{documentID}/attachments/{attachmentID}:
+    post:
+      operationId: appendDocumentAttachment
+      tags:
+        - documents
+      description: |
+        Append an Attachment to a document after already appended attachments.</br> The list of all attachments of the document is returned
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: attachmentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Document'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+    delete:
+      operationId: removeDocumentAttachment
+      tags:
+        - documents
+      description: |
+        Remove an attachment from the document
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+        - name: attachmentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Document'
+        '403':
+          description: Forbidden
+        '404':
+          description: Dcument not found
+  /sendings:
+    post:
+      operationId: createSendings
+      tags:
+        - sendings
+      description: |
+        Announces a letter (its ID) or a list of letters (list of IDs) which are already uploaded for delivering.
+      consumes:
+        - application/json
+      parameters:
+        - name: documentIds
+          in: body
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+      responses:
+        '200':
+          description: Letter created, may be faulty.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Document'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Document(s) do not exist
+    get:
+      operationId: getAllSendings
+      tags:
+        - sendings
+      description: |
+        Gets all document references, which are prepared for delivering or are already delivered.
+
+        Sendings can have the following status codes:
+          
+           3 (in production, waiting to be sent),
+           
+           4 (in print process),
+           
+           5 (is sent),
+           
+           6 (is canceled),
+           
+           7 (is erroneous)
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Document'
+        '403':
+          description: Forbidden
+    put:
+      operationId: cancelSendings
+      tags:
+        - sendings
+      description: |
+        Cancels the delivery of a list of letters (list of IDs). Only not shipped letters  are canceled.
+         .
+      consumes:
+        - application/json
+      parameters:
+        - name: documentIds
+          in: body
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+      responses:
+        '200':
+          description: |-
+            List of document status (documentID and status). 
+
+             In case of a serial document, the status of the child documents are also listed
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DocumentStatus'
+        '403':
+          description: Forbidden
+        '404':
+          description: Document(s) do not exist
+  /sendings/document:
+    post:
+      operationId: sendDocument
+      tags:
+        - sendings
+      description: |
+        Document is directly sent after upload, if it is successfully validated.
+      consumes:
+        - application/json
+      parameters:
+        - name: shipping
+          in: body
+          schema:
+            type: object
+            required:
+              - content
+            properties:
+              content:
+                $ref: '#/definitions/Content'
+              options:
+                $ref: '#/definitions/Options'
+              attributes:
+                type: array
+                items:
+                  $ref: '#/definitions/LetterAttribute'
+      responses:
+        '200':
+          description: Document created, may be faulty.
+          schema:
+            $ref: '#/definitions/Document'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+        '413':
+          description: Request Entity Too Large, Limit is 12 MB
+  /sendings/status:
+    get:
+      operationId: getSendingStatus
+      tags:
+        - sendings
+      description: |
+        Gets status of all documents, which are prepared for delivering or are already delivered.
+
+         The Query can be optional narrowed with a list of DocumentIds.
+
+         Sendings can have the following status codes:
+          
+           3 (in production, waiting to be sent),
+           
+           4 (in print process),
+           
+           5 (is sent),
+           
+           6 (is canceled),
+           
+           7 (is erroneous)
+      parameters:
+        - name: documentIds
+          in: query
+          required: false
+          type: array
+          items:
+            type: integer
+            format: int32
+          collectionFormat: multi
+          allowEmptyValue: false
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DocumentStatus'
+        '403':
+          description: Forbidden
+  /sendings/{documentID}/status:
+    get:
+      operationId: getSendingDocumentStatus
+      tags:
+        - sendings
+      description: |
+        Gets status of a document, which are prepared for delivering or are already delivered.
+
+        Sendings can have the following status codes:
+          
+           3 (in production, waiting to be sent),
+           
+           4 (in print process),
+           
+           5 (is sent),
+           
+           6 (is canceled),
+           
+           7 (is erroneous)
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/DocumentStatus'
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+  /sendings/{documentID}:
+    post:
+      operationId: createSendingForDocument
+      tags:
+        - sendings
+      description: |
+        Announces the delivery of a letter, if it isn't yet shipped.
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Document'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+    get:
+      operationId: getSendingForDocument
+      tags:
+        - sendings
+      description: |
+        Gets a referenced sending.
+        The sending is a letter, serial letter or an 'error' object.
+      parameters:
+        - name: documentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Document'
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+    put:
+      operationId: cancelSendingForDocument
+      tags:
+        - sendings
+      description: |
+        Cancels the delivery of a letter, if it isn't already shipped.
+      parameters:
+        - in: path
+          name: documentID
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Status'
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+        '406':
+          description: Not Acceptable
+    delete:
+      operationId: deleteSendingForDocument
+      tags:
+        - sendings
+      description: |
+        Deletes a canceled or a delivered and sent document from the system.
+      parameters:
+        - in: path
+          name: documentID
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+        '403':
+          description: Forbidden
+        '404':
+          description: Document not found
+  /attachments:
+    post:
+      operationId: createAttachment
+      tags:
+        - attachments
+      description: |
+        Upload an attachment
+      consumes:
+        - application/json
+      parameters:
+        - name: attachmentData
+          in: body
+          schema:
+            type: object
+            required:
+              - content
+            properties:
+              content:
+                $ref: '#/definitions/Content'
+              newSheet:
+                description: The Attachment will start on the front page of a sheet
+                type: boolean
+                default: true
+              remarks:
+                description: Remarks to the attachment
+                type: string
+      responses:
+        '200':
+          description: Attachment created.
+          schema:
+            $ref: '#/definitions/Attachment'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '413':
+          description: Request Entity Too Large, Limit is 12 MB
+    get:
+      operationId: getAllAttachments
+      tags:
+        - attachments
+      description: |
+        Gets all attachment references.
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Attachment'
+        '403':
+          description: Forbidden
+  /attachments/{attachmentID}:
+    get:
+      operationId: getAttachment
+      tags:
+        - attachments
+      description: |
+        Gets referenced attachment.
+      parameters:
+        - in: path
+          name: attachmentID
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Attachment'
+        '403':
+          description: Forbidden
+        '404':
+          description: Attachment not found
+    delete:
+      operationId: deleteAttachment
+      tags:
+        - attachments
+      description: Delete the referenced attachment.</br>The attachment can only be deleted if it is not appended to a none sended document.
+      parameters:
+        - in: path
+          name: attachmentID
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+        '403':
+          description: Forbidden
+        '404':
+          description: Attachment not found
+        '406':
+          description: Not Acceptable
+  /attachments/{attachmentID}/pdf:
+    get:
+      operationId: getAttachmentPdf
+      tags:
+        - attachments
+      description: |
+        Gets the referenced attachment as PDF preview.
+      parameters:
+        - name: attachmentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: file
+        '403':
+          description: Forbidden
+        '404':
+          description: Attachment not found
+        '406':
+          description: Not Acceptable
+  /attachments/{attachmentID}/png:
+    get:
+      operationId: getAttachmentPng
+      tags:
+        - attachments
+      description: |
+        Gets the referenced attachment as PNG preview of the first page.
+      parameters:
+        - name: attachmentID
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: file
+        '403':
+          description: Forbidden
+        '404':
+          description: Attachment not found
+        '406':
+          description: Not Acceptable
+  /attachments/{attachmentID}/documents:
+    get:
+      operationId: getAttachmentDocuments
+      tags:
+        - attachments
+      description: |
+        Gets all unsended documents to which this attachment is append.
+      parameters:
+        - in: path
+          name: attachmentID
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Document'
+        '403':
+          description: Forbidden
+        '404':
+          description: Attachment not found
+    patch:
+      operationId: appendAttachmentsToDocuments
+      tags:
+        - attachments
+      description: |
+        Append this attachment to all documents in the list.</br>The attachement is append at end of the document after already exkisting attachment.
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: attachmentID
+          required: true
+          type: integer
+          format: int32
+        - name: doumentIDs
+          in: body
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+      responses:
+        '200':
+          description: Append this attachments to all documents in the list
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DocumentStatus'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: Document(s) do not exist
+    delete:
+      operationId: removeAttachmentFromDocuments
+      tags:
+        - attachments
+      description: |
+        Remove the referenced attachment from all documents, which are not yet shipped.
+      parameters:
+        - in: path
+          name: attachmentID
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DocumentStatus'
+        '403':
+          description: Forbidden
+        '404':
+          description: Attachment not found
+  /accounts:
+    get:
+      operationId: getAccount
+      tags:
+        - accounts
+      description: |
+        Gets the account's financial data.
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Account'
+        '403':
+          description: Forbidden
+  /accounts/personaldata:
+    get:
+      operationId: getPersonalData
+      tags:
+        - accounts
+      description: |
+        Gets the account's personal data.
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/User'
+        '403':
+          description: Forbidden
+        '404':
+          description: User not found
+    patch:
+      operationId: updatePersonaldata
+      tags:
+        - accounts
+      description: |
+        Updates the personal data
+      parameters:
+        - name: personalData
+          in: body
+          required: true
+          schema:
+            description: The customer's personal data.
+            type: object
+            properties:
+              forename:
+                type: string
+              surname:
+                type: string
+              street:
+                type: string
+              city:
+                type: string
+              plz:
+                type: string
+              state:
+                type: string
+              country:
+                type: string
+              organization:
+                type: string
+              title:
+                type: string
+              phone:
+                type: string
+              partnerId:
+                type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '404':
+          description: User not found
+  /accounts/options:
+    get:
+      operationId: getOptions
+      tags:
+        - accounts
+      description: |
+        Gets default options which are assigned to the account.
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Options'
+        '403':
+          description: Forbidden
+        '404':
+          description: User not found
+    put:
+      operationId: updateOptions
+      tags:
+        - accounts
+      description: |
+        Updates default options which are assigned to the account.
+      parameters:
+        - name: defaultOptions
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Options'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Options'
+        '403':
+          description: Forbidden
+        '404':
+          description: User not found
+  /accounts/coworkers:
+    get:
+      operationId: getCoworkers
+      tags:
+        - accounts
+      description: |
+        Gets the coworkers.
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Coworker'
+        '403':
+          description: Forbidden
+  /accounts/coworkers/{debitornumber}/journal/{month}:
+    get:
+      operationId: getCoworkerTransactionsForMonth
+      tags:
+        - accounts
+      description: |
+        Gets all transctions of a month for a coworker.
+      parameters:
+        - in: path
+          name: debitornumber
+          required: true
+          type: string
+        - in: path
+          name: month
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+        '404':
+          description: User not found
+  /accounts/journal/{month}:
+    get:
+      operationId: getAllTransactionsForMonth
+      tags:
+        - accounts
+      description: |
+        Gets all transctions of a month.
+      parameters:
+        - in: path
+          name: month
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+  /invoices:
+    get:
+      operationId: getInvoices
+      tags:
+        - invoices
+      description: |
+        Gets all stored invoices references.
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Invoice'
+  /invoices/{invoiceNumber}:
+    get:
+      operationId: getInvoice
+      tags:
+        - invoices
+      description: |
+        Gets all transctions of the invoice.
+      parameters:
+        - in: path
+          name: invoiceNumber
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+  /invoices/{invoiceNumber}/pdf:
+    get:
+      operationId: getInvoicePdf
+      tags:
+        - invoices
+      description: |
+        Get a specific invoice as PDF.
+      parameters:
+        - in: path
+          name: invoiceNumber
+          required: true
+          type: string
+      responses:
+        '200':
+          description: the invoice as PDF
+          schema:
+            type: file
+        '404':
+          description: Document not found
+definitions:
+  Document:
+    type: object
+    required:
+      - id
+      - filename
+      - status
+      - documentType
+    properties:
+      id:
+        type: integer
+        format: int32
+      filename:
+        type: string
+      numberOfPages:
+        type: integer
+        format: int32
+      status:
+        $ref: '#/definitions/Status'
+      documentType:
+        type: string
+        enum:
+          - Letter
+          - SerialLetter
+      letter:
+        $ref: '#/definitions/Letter'
+      serialLetter:
+        $ref: '#/definitions/SerialLetter'
+  Attachment:
+    type: object
+    required:
+      - id
+      - filename
+      - numberOfPages
+      - newSheet
+    properties:
+      id:
+        type: integer
+        format: int32
+      filename:
+        type: string
+      numberOfPages:
+        type: integer
+        format: int32
+      newSheet:
+        type: boolean
+        default: true
+      ntimesUsed:
+        description: This attachment appended to 'n' documents
+        type: integer
+        format: int32
+      remarks:
+        type: string
+  Letter:
+    type: object
+    required:
+      - letterType
+    properties:
+      letterType:
+        type: string
+        enum:
+          - LetterData
+          - Error
+      letterData:
+        $ref: '#/definitions/LetterData'
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/Error'
+  LetterData:
+    type: object
+    required:
+      - recipientAddress
+      - price
+      - international
+      - options
+    properties:
+      recipientAddress:
+        type: string
+      price:
+        $ref: '#/definitions/Price'
+      international:
+        type: boolean
+      options:
+        $ref: '#/definitions/Options'
+      attributes:
+        type: array
+        items:
+          $ref: '#/definitions/LetterAttribute'
+      attachments:
+        description: |-
+          The Attachments which are appended to this document.
+          </br>Only documents from documentType 'Letter' can have attachments
+        type: array
+        items:
+          $ref: '#/definitions/Attachment'
+  SerialLetter:
+    type: object
+    properties:
+      splitToken:
+        type: string
+        description: This token is used to split the serial letter.
+      splitAfterNumberOfPages:
+        type: integer
+        format: int32
+        description: Every N pages, the serial letter is split.
+      status:
+        $ref: '#/definitions/SerialLetterStatus'
+      letters:
+        type: array
+        items:
+          $ref: '#/definitions/Document'
+  SerialLetterStatus:
+    type: object
+    required:
+      - nrTotal
+      - nrGenerated
+      - nrSuccess
+      - nrError
+    properties:
+      nrTotal:
+        type: integer
+        format: int32
+      nrGenerated:
+        type: integer
+        format: int32
+      nrSuccess:
+        type: integer
+        format: int32
+      nrError:
+        type: integer
+        format: int32
+  Error:
+    type: object
+    required:
+      - code
+      - text
+      - blankText
+    properties:
+      code:
+        type: integer
+        format: int32
+        description: Binect error code.
+      text:
+        type: string
+        description: Human readable error text with filled-in place holders.
+      blankText:
+        type: string
+        description: Text with place holders for parameters.  Place holders are framed in %-Symbols, e. g. 'error on page number %pageNr% of your document'.
+      parameters:
+        type: array
+        description: Parameters for place holder in 'blankText'.
+        items:
+          $ref: '#/definitions/ErrorParam'
+      errorOnPage:
+        type: integer
+        format: int32
+        description: On which page of the document the error occurred.
+  Price:
+    type: object
+    required:
+      - priceBeforeTax
+      - priceAfterTax
+      - unit
+      - taxInPercent
+    properties:
+      priceBeforeTax:
+        type: integer
+        format: int32
+      priceAfterTax:
+        type: integer
+        format: int32
+      unit:
+        $ref: '#/definitions/CurrencyEnum'
+      taxInPercent:
+        type: integer
+        format: int32
+        description: e. g. 19 for 19% sales tax
+  Options:
+    type: object
+    required:
+      - simplex
+      - color
+    properties:
+      simplex:
+        description: if false it is duplex
+        type: boolean
+      color:
+        description: if false it is black and white
+        type: boolean
+      envelope:
+        description: Shall only be used for 'C4', otherwise not used. 'C4' is the only supported value.
+        type: string
+        enum:
+          - C4
+  LetterAttribute:
+    type: object
+    required:
+      - key
+      - value
+    properties:
+      key:
+        type: string
+      value:
+        type: string
+  DocumentStatus:
+    type: object
+    required:
+      - id
+      - status
+    properties:
+      id:
+        type: integer
+        format: int32
+      status:
+        $ref: '#/definitions/Status'
+  Status:
+    type: object
+    required:
+      - code
+      - text
+    properties:
+      code:
+        description: |-
+          Following status codes are defined:
+
+           1 (in preparation),
+           
+           2 (is shippable),
+           
+           3 (in production, waiting to be sent),
+           
+           4 (in print process),
+           
+           5 (is sent),
+           
+           6 (is canceled),
+           
+           7 (is erroneous)
+           
+        type: integer
+        format: int32
+      text:
+        type: string
+  Account:
+    description: account data
+    type: object
+    required:
+      - credit
+      - unit
+    properties:
+      credit:
+        type: integer
+        format: int32
+      promotionCredit:
+        type: integer
+        format: int32
+      creditLimit:
+        type: integer
+        format: int32
+      unit:
+        $ref: '#/definitions/CurrencyEnum'
+  ErrorParam:
+    type: object
+    required:
+      - name
+      - value
+    properties:
+      name:
+        type: string
+      value:
+        type: string
+  Content:
+    description: The content of the file and file name. The content must be base64 encoded.
+    type: object
+    required:
+      - filename
+      - content
+    properties:
+      filename:
+        type: string
+      content:
+        type: string
+        format: binary
+  User:
+    description: The customer's personal data.
+    type: object
+    required:
+      - email
+    properties:
+      debitornumber:
+        type: string
+      email:
+        type: string
+        format: email
+      forename:
+        type: string
+      surname:
+        type: string
+      street:
+        type: string
+      city:
+        type: string
+      plz:
+        type: string
+      state:
+        type: string
+      country:
+        type: string
+      organization:
+        type: string
+      title:
+        type: string
+      phone:
+        type: string
+      partnerId:
+        type: string
+  Coworker:
+    description: The coworkers data.
+    type: object
+    required:
+      - email
+    properties:
+      debitornumber:
+        type: string
+      email:
+        type: string
+        format: email
+      forename:
+        type: string
+      surname:
+        type: string
+      registrationDate:
+        type: string
+        format: date
+      numberOfSendings:
+        type: integer
+        format: int32
+      totalAmount:
+        $ref: '#/definitions/Price'
+  CurrencyEnum:
+    type: string
+    enum:
+      - eurocent
+  Address:
+    description: Adress.
+    type: object
+    required:
+      - name
+      - street
+      - zipCode
+      - city
+    properties:
+      name:
+        type: string
+      nameExtend:
+        type: string
+      street:
+        type: string
+      city:
+        type: string
+      zipCode:
+        type: string
+      country:
+        type: string
+  Invoice:
+    description: Invoice.
+    type: object
+    required:
+      - id
+      - filename
+    properties:
+      id:
+        type: string
+      filename:
+        type: string
+      totalAmount:
+        $ref: '#/definitions/Price'
+      date:
+        type: string
+        format: date
+  Transaction:
+    description: Invoice.
+    type: object
+    required:
+      - id
+      - action
+      - date
+    properties:
+      id:
+        type: string
+      action:
+        $ref: '#/definitions/Action'
+      date:
+        type: string
+        format: date
+      documentId:
+        type: string
+      filename:
+        type: string
+      amount:
+        $ref: '#/definitions/Price'
+      numberOfPages:
+        type: integer
+        format: int32
+      options:
+        $ref: '#/definitions/Options'
+      status:
+        $ref: '#/definitions/Status'
+      coworker:
+        description: Debitornumber of coworker
+        type: string
+  Action:
+    description: Describe an action of a transaction
+    type: object
+    required:
+      - code
+      - text
+    properties:
+      code:
+        description: |-
+          Following action codes are defined:
+
+           1 (is sent),
+           
+           2 (is canceled),
+           
+           3 (delivery error)
+           
+        type: integer
+        format: int32
+      text:
+        type: string

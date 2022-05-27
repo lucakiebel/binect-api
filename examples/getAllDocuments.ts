@@ -8,7 +8,7 @@ const configuration = new Configuration({
 
 const documentsApi = new DocumentsApi(configuration);
 
-documentsApi.documentsGet().then(res => {
+documentsApi.getAllDocuments().then(res => {
     const documents: Document[] = res.data;
     console.log(documents);
 })

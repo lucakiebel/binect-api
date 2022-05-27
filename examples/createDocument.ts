@@ -1,4 +1,4 @@
-import {Configuration, DocumentsApi, DocumentsGetRequest} from '../src';
+import {Configuration, DocumentsApi, CreateDocumentRequest} from '../src';
 import { readFile } from 'node:fs/promises';
 
 const read = async (file: string) => {
@@ -18,12 +18,12 @@ const documentsApi = new DocumentsApi(configuration);
 
 
 read('./letter-example.pdf').then(async (data) => {
-    const doc: DocumentsGetRequest = {
+    const doc: CreateDocumentRequest = {
         content: {
             filename: 'example.pdf',
             content: data,
         }
     }
-    const result = await documentsApi.documentsPost(doc);
+    const result = await documentsApi.createDocument(doc);
     console.log(result.data);
 });
