@@ -1,12 +1,6 @@
 import { Configuration, SendingsApi, SendDocumentRequest } from '../src';
 import { readFile } from 'node:fs/promises';
 
-const read = async (file: string) => {
-    return await readFile(file, {
-        encoding: 'base64'
-    });
-}
-
 
 const configuration = new Configuration({
     username: '<username>',
@@ -16,7 +10,7 @@ const configuration = new Configuration({
 const sendingsApi = new SendingsApi(configuration);
 
 
-read('./letter-example.pdf').then(async (data) => {
+readFile('./letter-example.pdf', {encoding: 'base64'}).then(async (data) => {
     const shipping: SendDocumentRequest = {
         content: {
             filename: 'example.pdf',
