@@ -11,7 +11,6 @@ const read = async (file: string) => {
 const configuration = new Configuration({
     username: '<username>',
     password: '<password>',
-    basePath: 'https://app.binect.de/binectapi/v1',
 });
 
 const sendingsApi = new SendingsApi(configuration);
