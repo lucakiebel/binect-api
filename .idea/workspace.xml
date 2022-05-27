@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f17cfc85-5601-4cd8-a66f-61392a4951f1" name="Changes" comment="Update swagger docs and recreate api and examples">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/createDocument.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/createDocument.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/getAllDocuments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/getAllDocuments.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/sendLetter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/sendLetter.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
