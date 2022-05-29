@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f17cfc85-5601-4cd8-a66f-61392a4951f1" name="Changes" comment="Update swagger docs and recreate api and examples">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="f17cfc85-5601-4cd8-a66f-61392a4951f1" name="Changes" comment="Update swagger docs and recreate api and examples" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +73,7 @@
       <workItem from="1653569025729" duration="3412000" />
       <workItem from="1653572460452" duration="29000" />
       <workItem from="1653572498768" duration="12772000" />
-      <workItem from="1653647275695" duration="249000" />
+      <workItem from="1653647275695" duration="558000" />
     </task>
     <task id="LOCAL-00001" summary="Update swagger docs and recreate api and examples">
       <created>1653645301148</created>
